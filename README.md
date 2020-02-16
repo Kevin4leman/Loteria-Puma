@@ -1,2 +1,2 @@
 # Loteria-Puma
- Poryecto universitario
+ Proyecto universitario
