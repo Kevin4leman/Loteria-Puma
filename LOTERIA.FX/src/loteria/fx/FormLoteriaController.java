@@ -36,7 +36,7 @@ public class FormLoteriaController implements Initializable {
     private TextField txtNombreSuc;
 
     @FXML
-    private TextField txtNombreRep;
+    private TextField txtNombreRepe;
 
     @FXML
     private TextField txtDireccion;
@@ -44,6 +44,9 @@ public class FormLoteriaController implements Initializable {
     @FXML
     private TableView tbSucursales; 
             
+    @FXML
+    private TableColumn colResponsable;
+    
     @FXML
     private TableColumn colCodigo;
     
@@ -53,8 +56,6 @@ public class FormLoteriaController implements Initializable {
     @FXML
     private TableColumn colNombreSuc;
     
-    @FXML
-    private TableColumn colNombreRep;
     
     @FXML
     private TableColumn colDireccion;
@@ -74,8 +75,9 @@ public class FormLoteriaController implements Initializable {
         colCodigo.setCellValueFactory(new PropertyValueFactory("Codigo"));
         colRTN.setCellValueFactory(new PropertyValueFactory("RTN"));
         colNombreSuc.setCellValueFactory(new PropertyValueFactory("Nombre"));
-        colNombreRep.setCellValueFactory(new PropertyValueFactory("Representante"));
+        //colEncargado.setCellValueFactory(new PropertyValueFactory("Encargado"));
         colDireccion.setCellValueFactory(new PropertyValueFactory("Direccion"));
+        colResponsable.setCellValueFactory(new PropertyValueFactory("Responsable"));
         
         dataSucursales = FXCollections.observableArrayList();
         
@@ -90,8 +92,9 @@ public class FormLoteriaController implements Initializable {
         NewSucur.setCodigo(Integer.parseInt((txtCodigo.getText())));
         NewSucur.setRTN(Integer.parseInt((txtRTN.getText())));
         NewSucur.setNombre(txtNombreSuc.getText());
-        NewSucur.setNombreResponsable(txtNombreRep.getText());
+        NewSucur.setResponsable(txtNombreRepe.getText());
         NewSucur.setDireccion(txtDireccion.getText());
+        NewSucur.setEncargado(txtNombreRepe.getText());
         
         dataSucursales.add(NewSucur);
     }

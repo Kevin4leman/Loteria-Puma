@@ -10,18 +10,29 @@ package loteria.bl;
  * @author Admin
  */
 public class Sucursales {
-    private int Codigo;
+    private int Codigos;
     private int RTN;
     private String Nombre;
     private String Direccion;
+    private String Encargado;
     private String Responsable;
 
+    public String getEncargado() {
+        return Encargado;
+    }
+
+    public void setEncargado(String Encargado) {
+        this.Encargado = Encargado;
+    }
+
+    
+    
     public int getCodigo() {
-        return Codigo;
+        return Codigos;
     }
 
     public void setCodigo(int Codigo) {
-        this.Codigo = Codigo;
+        this.Codigos = Codigo;
     }
 
     public int getRTN() {
@@ -48,11 +59,13 @@ public class Sucursales {
         this.Direccion = Direccion;
     }
 
-    public String getNombreResponsable() {
-        return Responsable;
+    public String getResponsable() {
+        return Encargado;
     }
 
-    public void setNombreResponsable(String NombreResponsable) {
-        this.Responsable = NombreResponsable;
+    public void setResponsable(String Responsable) {
+        this.Encargado = Responsable;
     }
+
+    
 }

@@ -14,8 +14,9 @@
         <columns>
           <TableColumn fx:id="colCodigo" prefWidth="58.0" text="Código" />
           <TableColumn fx:id="colRTN" prefWidth="92.0" text="RTN" />
-          <TableColumn fx:id="colNombreSuc" prefWidth="100.0" text="Nombre" />
-          <TableColumn fx:id="colNombreRep" prefWidth="105.0" text="Representante" />
+          <TableColumn fx:id="colResponsable" prefWidth="105.0" text="Responsable" />
+          
+          <TableColumn fx:id="colNombreSuc" prefWidth="100.0" text="Encargado" />
           <TableColumn fx:id="colDireccion" prefWidth="157.0" text="Dirección" />
         </columns>
       </TableView>
@@ -27,7 +28,7 @@
       <TextField fx:id="txtCodigo" layoutX="204.0" layoutY="111.0" />
       <TextField fx:id="txtRTN" layoutX="204.0" layoutY="149.0" />
       <TextField fx:id="txtNombreSuc" layoutX="205.0" layoutY="189.0" />
-      <TextField fx:id="txtNombreRep" layoutX="205.0" layoutY="227.0" />
+      <TextField fx:id="txtNombreRepe" layoutX="205.0" layoutY="227.0" />
       <TextField fx:id="txtDireccion" layoutX="205.0" layoutY="264.0" />
       <Button layoutX="147.0" layoutY="302.0" mnemonicParsing="false" onAction="#RegistrarSuc" text="Aceptar" />
       <Button layoutX="217.0" layoutY="302.0" mnemonicParsing="false" text="Cancelar" />
