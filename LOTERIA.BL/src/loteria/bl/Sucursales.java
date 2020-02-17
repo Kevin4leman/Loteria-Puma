@@ -14,7 +14,7 @@ public class Sucursales {
     private int RTN;
     private String Nombre;
     private String Direccion;
-    private String NombreResponsable;
+    private String Responsable;
 
     public int getCodigo() {
         return Codigo;
@@ -49,10 +49,10 @@ public class Sucursales {
     }
 
     public String getNombreResponsable() {
-        return NombreResponsable;
+        return Responsable;
     }
 
     public void setNombreResponsable(String NombreResponsable) {
-        this.NombreResponsable = NombreResponsable;
+        this.Responsable = NombreResponsable;
     }
 }
