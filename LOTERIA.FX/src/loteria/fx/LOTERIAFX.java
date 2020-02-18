@@ -19,7 +19,7 @@ public class LOTERIAFX extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FormLoteria.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("GMapsSelector.fxml"));
         
         Scene scene = new Scene(root);
         
