@@ -5,67 +5,89 @@
  */
 package loteria.bl;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  *
  * @author Admin
  */
 public class Sucursales {
-    private int Codigos;
-    private int RTN;
-    private String Nombre;
-    private String Direccion;
-    private String Encargado;
-    private String Responsable;
+    private SimpleIntegerProperty Codigos;
+    private SimpleIntegerProperty RTN;
+    private SimpleStringProperty Nombre;
+    private SimpleStringProperty Direccion;
+    private SimpleStringProperty Responsable;
 
-    public String getEncargado() {
-        return Encargado;
-    }
-
-    public void setEncargado(String Encargado) {
-        this.Encargado = Encargado;
+    public Sucursales() {
+        Codigos =  new SimpleIntegerProperty();
+        RTN =  new SimpleIntegerProperty();;
+        Nombre = new SimpleStringProperty();
+        Direccion = new SimpleStringProperty();
+        Responsable = new SimpleStringProperty();
     }
 
     
-    
-    public int getCodigo() {
+    public SimpleIntegerProperty idProperty() {
         return Codigos;
     }
 
+    
+    public int getCodigo() {
+        return Codigos.get();
+    }
+
     public void setCodigo(int Codigo) {
-        this.Codigos = Codigo;
+        this.Codigos.set(Codigo);
     }
 
     public int getRTN() {
-        return RTN;
+        return RTN.get();
     }
 
     public void setRTN(int RTN) {
-        this.RTN = RTN;
+        this.RTN.set(RTN);
     }
 
+     public SimpleIntegerProperty RTNProperty() {
+        return RTN;
+    }
+    
     public String getNombre() {
-        return Nombre;
+        return Nombre.get();
     }
 
     public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+        this.Nombre.set(Nombre);
     }
 
+     public SimpleStringProperty NombreProperty() {
+        return Nombre;
+    }
+    
     public String getDireccion() {
-        return Direccion;
+        return Direccion.get();
     }
 
     public void setDireccion(String Direccion) {
-        this.Direccion = Direccion;
+        this.Direccion.set(Direccion);
     }
 
+     public SimpleStringProperty DireccionProperty() {
+        return Direccion;
+    }
+     
     public String getResponsable() {
-        return Encargado;
+        return Responsable.get();
     }
 
     public void setResponsable(String Responsable) {
-        this.Encargado = Responsable;
+        this.Responsable.set(Responsable);
     }
-
+    
+     public SimpleStringProperty ResponsableProperty() {
+        return Responsable;
+    }
+    
     
 }

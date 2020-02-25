@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="532.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loteria.fx.FormLoteriaController">
+   <children>
+      <TableView fx:id="tbSucursales" layoutX="418.0" layoutY="26.0" prefHeight="481.0" prefWidth="526.0">
+        <columns>
+          <TableColumn fx:id="colCodigo" prefWidth="58.0" text="Código" />
+          <TableColumn fx:id="colRTN" prefWidth="92.0" text="RTN" />
+          <TableColumn fx:id="colResponsable" prefWidth="105.0" text="Responsable" />
+          <TableColumn fx:id="colNombreSuc" prefWidth="100.0" text="Encargado" />
+          <TableColumn fx:id="colDireccion" prefWidth="157.0" text="Dirección" />
+          <TableColumn fx:id="colEditar" prefWidth="75.0" />
+        <TableColumn fx:id="colEliminar" prefWidth="75.0" />   
+        </columns>
+      </TableView>
+      <Button fx:id="btnNuevo" layoutX="173.0" layoutY="228.0" mnemonicParsing="false" onAction="#nuevoSucursales" text="Nuevo" />
+      <Button fx:id="btnBuscar" layoutX="173.0" layoutY="145.0" mnemonicParsing="false" onAction="#buscar" text="Buscar" />
+      <TextField fx:id="txtBuscar" layoutX="95.0" layoutY="193.0" prefHeight="25.0" prefWidth="208.0" />
+   </children>
+</AnchorPane>
