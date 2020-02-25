@@ -24,7 +24,7 @@ import loteria.bl.Sucursales;
  *
  * @author Admin
  */
-public class FormLoteriaController implements Initializable {
+public class FormSucursalController implements Initializable {
 
     @FXML
     private TextField txtCodigo;
@@ -59,6 +59,12 @@ public class FormLoteriaController implements Initializable {
     
     @FXML
     private TableColumn colDireccion;
+    
+    @FXML
+    private TableColumn colEditar;
+    
+    @FXML
+    private TableColumn colEliminar;
     
     Sucursales Suc;
     
@@ -98,4 +104,6 @@ public class FormLoteriaController implements Initializable {
         
         dataSucursales.add(NewSucur);
     }
+    
+    
 }
