@@ -41,7 +41,7 @@ public class NuevoEditarSucursalesController implements Initializable {
     @FXML
     Button btnCancelar;
     
-    private FormLoteriaController controller;
+    private FormSucursalController controller;
     private Sucursales Sucursal;
     /**
      * Initializes the controller class.
@@ -73,7 +73,7 @@ public class NuevoEditarSucursalesController implements Initializable {
         stage.close();
     }
     
-    public void setController(FormLoteriaController controller) {
+    public void setController(FormSucursalController controller) {
         this.controller = controller;
     }
     

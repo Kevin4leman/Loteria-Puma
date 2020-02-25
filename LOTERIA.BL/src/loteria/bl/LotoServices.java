@@ -13,26 +13,26 @@ import java.util.ArrayList;
  */
 public class LotoServices {
     
-      private final ArrayList<Sucursales> listadeProductos;
+      private final ArrayList<Sucursales> listadeSucursales;
     
     public LotoServices() {
-        listadeProductos = new ArrayList<>();
+        listadeSucursales = new ArrayList<>();
     }
 
     public ArrayList<Sucursales> obtenerSucursaless() {
-        return listadeProductos;
+        return listadeSucursales;
     }
 
     public ArrayList<Sucursales> obtenerSucursaless(String buscar) {
         
         if (buscar == null && buscar.equals("")) {
-            return listadeProductos;
+            return listadeSucursales;
         }
         
         String buscarMinuscula = buscar.toLowerCase();
         ArrayList<Sucursales> resultado = new ArrayList<>();
         
-        listadeProductos.forEach(Sucursal -> {
+        listadeSucursales.forEach(Sucursal -> {
             if (Sucursal.getNombre().toLowerCase().contains(buscar) == true) {
                 resultado.add(Sucursal);
             }
@@ -51,9 +51,9 @@ public class LotoServices {
 
                 Sucursal.setCodigo(id);
 
-                listadeProductos.add(Sucursal);
+                listadeSucursales.add(Sucursal);
             } else {
-                listadeProductos.forEach(SucursalExistente -> {
+                listadeSucursales.forEach(SucursalExistente -> {
                     if (SucursalExistente.getCodigo() == Sucursal.getCodigo()) 
                     {
                         SucursalExistente.setDireccion(Sucursal.getDireccion());
@@ -70,13 +70,13 @@ public class LotoServices {
     }
     
     public void eliminar(Sucursales Sucursal) {
-        listadeProductos.remove(Sucursal);
+        listadeSucursales.remove(Sucursal);
     }
     
 
     private Integer obtenerSiguienteId() {
         Integer maxId = 1;
-        for(Sucursales Sucursal: listadeProductos) {
+        for(Sucursales Sucursal: listadeSucursales) {
             if (Sucursal.getCodigo()>= maxId) {
                 maxId = Sucursal.getCodigo()+ 1;
             }

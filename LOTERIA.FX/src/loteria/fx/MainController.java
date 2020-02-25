@@ -46,7 +46,7 @@ public class MainController {
     }
 
     public void loadPane2(ActionEvent event) throws IOException {
-        setDataPane(fadeAnimate("/samplefx/view/FXML2.fxml"));
+        setDataPane(fadeAnimate("FormSucursal.fxml"));
     }
 
     public void loadPane3(ActionEvent event) throws IOException {
