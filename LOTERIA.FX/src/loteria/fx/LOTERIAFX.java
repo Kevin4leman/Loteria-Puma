@@ -16,17 +16,24 @@ import javafx.stage.Stage;
  * @author Admin
  */
 public class LOTERIAFX extends Application {
+  public static Boolean isSplashLoaded=false;
+    static Stage stage;
+    
+    public static Stage getStage(){
+        return stage;
+    }
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
-        
+        LOTERIAFX.stage=stage;
+       Parent root = FXMLLoader.load(getClass()
+                .getResource("/loteria/fx/Menu/main.fxml"));
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
+        stage.setTitle("Punto de ventas");
         stage.show();
     }
-
     /**
      * @param args the command line arguments
      */

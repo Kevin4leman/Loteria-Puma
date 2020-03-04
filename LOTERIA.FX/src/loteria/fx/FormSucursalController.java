@@ -5,6 +5,8 @@
  */
 package loteria.fx;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -52,7 +54,7 @@ public class FormSucursalController implements Initializable {
 //    private TextField txtDireccion;
 //    
     @FXML
-    private TextField txtBuscar;
+    private JFXTextField txtBuscar;
     
     @FXML
     private TableView tbSucursales; 
@@ -155,7 +157,7 @@ public class FormSucursalController implements Initializable {
     
     private void definirColumnaEditar() {
         colEditar.setCellFactory(param -> new TableCell<String, String>() {
-            final Button btn = new Button("Editar");
+            final JFXButton btn = new JFXButton("Editar");
             
             @Override
             public void updateItem(String item, boolean empty) {
@@ -164,6 +166,7 @@ public class FormSucursalController implements Initializable {
                     setGraphic(null);
                     setText(null);
                 } else {
+                    btn.getStyleClass().add("jfx-button-info-outline");
                     btn.setOnAction(event -> {
                         Sucursales Sucursales = (Sucursales) getTableRow().getItem();
                         try {
@@ -190,7 +193,9 @@ public class FormSucursalController implements Initializable {
                     setGraphic(null);
                     setText(null);
                 } else {
+                    btn.getStyleClass().add("jfx-button-danger-outline");
                     btn.setOnAction(event -> {
+//                        tableView.getSelectionModel().select(getTableRow().getItem());
                         Sucursales Sucursales = (Sucursales) getTableRow().getItem();
                         servicio.eliminar(Sucursales);
                         cargarDatos();

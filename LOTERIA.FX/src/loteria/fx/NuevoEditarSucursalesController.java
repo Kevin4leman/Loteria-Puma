@@ -5,6 +5,8 @@
  */
 package loteria.fx;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -24,22 +26,22 @@ import loteria.bl.Sucursales;
 public class NuevoEditarSucursalesController implements Initializable {
 
     @FXML
-    private TextField txtCodigo;
+    private JFXTextField txtCodigo;
 
     @FXML
-    private TextField txtRTN;
+    private JFXTextField txtRTN;
 
     @FXML
-    private TextField txtNombreSuc;
+    private JFXTextField txtNombreSuc;
 
     @FXML
-    private TextField txtNombreRepe;
+    private JFXTextField txtNombreRepe;
 
     @FXML
-    private TextField txtDireccion;
+    private JFXTextField txtDireccion;
     
     @FXML
-    Button btnCancelar;
+    JFXButton btnCancelar;
     
     private FormSucursalController controller;
     private Sucursales Sucursal;
