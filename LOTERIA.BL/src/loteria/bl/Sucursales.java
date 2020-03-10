@@ -7,86 +7,94 @@ package loteria.bl;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author Admin
  */
+@Entity
+@Table(name="tbSucursales")
 public class Sucursales {
-    private SimpleIntegerProperty Codigos;
-    private SimpleIntegerProperty RTN;
-    private SimpleStringProperty Nombre;
-    private SimpleStringProperty Direccion;
-    private SimpleStringProperty Responsable;
+    private SimpleIntegerProperty suc_Id;
+    private SimpleIntegerProperty suc_RTN;
+    private SimpleStringProperty suc_NombreSuc;
+    private SimpleStringProperty suc_Direccion;
+    private SimpleStringProperty suc_Encargado;
 
     public Sucursales() {
-        Codigos =  new SimpleIntegerProperty();
-        RTN =  new SimpleIntegerProperty();;
-        Nombre = new SimpleStringProperty();
-        Direccion = new SimpleStringProperty();
-        Responsable = new SimpleStringProperty();
+        suc_Id =  new SimpleIntegerProperty();
+        suc_RTN =  new SimpleIntegerProperty();;
+        suc_NombreSuc = new SimpleStringProperty();
+        suc_Direccion = new SimpleStringProperty();
+        suc_Encargado = new SimpleStringProperty();
     }
 
     
     public SimpleIntegerProperty idProperty() {
-        return Codigos;
+        return suc_Id;
     }
 
-    
-    public int getCodigo() {
-        return Codigos.get();
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    public Integer getCodigo() {
+        return suc_Id.get();
     }
 
     public void setCodigo(int Codigo) {
-        this.Codigos.set(Codigo);
+        this.suc_Id.set(Codigo);
     }
 
     public int getRTN() {
-        return RTN.get();
+        return suc_RTN.get();
     }
 
     public void setRTN(int RTN) {
-        this.RTN.set(RTN);
+        this.suc_RTN.set(RTN);
     }
 
      public SimpleIntegerProperty RTNProperty() {
-        return RTN;
+        return suc_RTN;
     }
     
-    public String getNombre() {
-        return Nombre.get();
+    public String getNombreSucursal() {
+        return suc_NombreSuc.get();
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre.set(Nombre);
+    public void setNombreSucursal(String Nombre) {
+        this.suc_NombreSuc.set(Nombre);
     }
 
      public SimpleStringProperty NombreProperty() {
-        return Nombre;
+        return suc_NombreSuc;
     }
     
     public String getDireccion() {
-        return Direccion.get();
+        return suc_Direccion.get();
     }
 
     public void setDireccion(String Direccion) {
-        this.Direccion.set(Direccion);
+        this.suc_Direccion.set(Direccion);
     }
 
      public SimpleStringProperty DireccionProperty() {
-        return Direccion;
+        return suc_Direccion;
     }
      
     public String getResponsable() {
-        return Responsable.get();
+        return suc_Encargado.get();
     }
 
     public void setResponsable(String Responsable) {
-        this.Responsable.set(Responsable);
+        this.suc_Encargado.set(Responsable);
     }
     
      public SimpleStringProperty ResponsableProperty() {
-        return Responsable;
+        return suc_Encargado;
     }
     
     

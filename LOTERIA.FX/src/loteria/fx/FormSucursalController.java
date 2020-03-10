@@ -105,7 +105,7 @@ public class FormSucursalController implements Initializable {
         definirColumnaEditar();
         definirColumnaEliminar();
        
-       //cargarDatos();
+       cargarDatos();
     }    
     
 //    
@@ -168,9 +168,11 @@ public class FormSucursalController implements Initializable {
                 } else {
                     btn.getStyleClass().add("jfx-button-info-outline");
                     btn.setOnAction(event -> {
-                        Sucursales Sucursales = (Sucursales) getTableRow().getItem();
+                        tbSucursales.getSelectionModel().select(getTableRow().getItem());
+                        Sucursales SucurExistente = (Sucursales) getTableRow().getItem();
+                        Sucursales Sucursal = servicio.Clonar(SucurExistente);
                         try {
-                            abrirVentanaModal(Sucursales, "Editar Sucursales");
+                            abrirVentanaModal(Sucursal, "Editar Sucursales");
                         } catch (IOException ex) {
                             Logger.getLogger(NuevoEditarSucursalesController.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -195,7 +197,7 @@ public class FormSucursalController implements Initializable {
                 } else {
                     btn.getStyleClass().add("jfx-button-danger-outline");
                     btn.setOnAction(event -> {
-//                        tableView.getSelectionModel().select(getTableRow().getItem());
+                        tbSucursales.getSelectionModel().select(getTableRow().getItem());
                         Sucursales Sucursales = (Sucursales) getTableRow().getItem();
                         servicio.eliminar(Sucursales);
                         cargarDatos();

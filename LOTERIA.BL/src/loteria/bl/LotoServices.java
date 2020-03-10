@@ -6,84 +6,109 @@
 package loteria.bl;
 
 import java.util.ArrayList;
+import java.util.List;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
  * @author Chris
  */
 public class LotoServices {
-    
-      private final ArrayList<Sucursales> listadeSucursales;
-    
-    public LotoServices() {
-        listadeSucursales = new ArrayList<>();
-    }
-
     public ArrayList<Sucursales> obtenerSucursaless() {
-        return listadeSucursales;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        Transaction tx = session.beginTransaction();
+        
+        Criteria query = session.createCriteria(Sucursales.class);
+        List<Sucursales> resultado = query.list();
+        
+        tx.commit();
+        session.close();
+        
+        return new ArrayList<>(resultado);
     }
 
     public ArrayList<Sucursales> obtenerSucursaless(String buscar) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
         
-        if (buscar == null && buscar.equals("")) {
-            return listadeSucursales;
-        }
+        Transaction tx = session.beginTransaction();
         
-        String buscarMinuscula = buscar.toLowerCase();
-        ArrayList<Sucursales> resultado = new ArrayList<>();
+        Criteria query = session.createCriteria(Sucursales.class);
+        query.add(Restrictions.like("nombreSucursal", buscar, MatchMode.ANYWHERE));
+        List<Sucursales> resultado = query.list();
+        tx.commit();
+        session.close();
         
-        listadeSucursales.forEach(Sucursal -> {
-            if (Sucursal.getNombre().toLowerCase().contains(buscar) == true) {
-                resultado.add(Sucursal);
-            }
-        });
-        
-        return resultado;
+        return new ArrayList<>(resultado);
     }
     
     public String guardar(Sucursales Sucursal) { 
         String resultado = validarSucursales(Sucursal);
         
-        if (resultado.equals("")) {                   
-
-            if (Sucursal.getCodigo() == 0) {
-                Integer id = obtenerSiguienteId();
-
-                Sucursal.setCodigo(id);
-
-                listadeSucursales.add(Sucursal);
-            } else {
-                listadeSucursales.forEach(SucursalExistente -> {
-                    if (SucursalExistente.getCodigo() == Sucursal.getCodigo()) 
-                    {
-                        SucursalExistente.setDireccion(Sucursal.getDireccion());
-                        SucursalExistente.setRTN(Sucursal.getRTN());
-                        SucursalExistente.setNombre(Sucursal.getNombre());
-                        SucursalExistente.setResponsable(Sucursal.getResponsable());
-                    }            
-                });
+        if (resultado.equals("")) 
+        {                   
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            
+            Transaction tx = session.beginTransaction();
+            
+            try
+            {
+                session.saveOrUpdate(Sucursal);
+                tx.commit();
             }
-            return "";
+            catch (Exception ex)
+            {
+                tx.rollback();
+                return ex.getMessage();
+            }
+            finally
+            {
+                session.close();
+            }
+            
         } 
         
         return resultado;
     }
     
     public void eliminar(Sucursales Sucursal) {
-        listadeSucursales.remove(Sucursal);
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            Transaction tx = session.beginTransaction();
+            
+            try
+            {
+                session.delete(Sucursal);
+                tx.commit();
+            }
+            catch (Exception ex)
+            {
+                tx.rollback();
+                System.out.println(ex.getMessage());
+            }
+            finally
+            {
+                session.close();
+            }
     }
     
 
-    private Integer obtenerSiguienteId() {
-        Integer maxId = 1;
-        for(Sucursales Sucursal: listadeSucursales) {
-            if (Sucursal.getCodigo()>= maxId) {
-                maxId = Sucursal.getCodigo()+ 1;
-            }
-        }
-        return maxId;
+    public Sucursales Clonar(Sucursales sucur)
+    {
+        Sucursales clonado = new Sucursales();
+        
+        clonado.setCodigo(sucur.getCodigo());
+        clonado.setRTN(sucur.getRTN());
+        clonado.setDireccion(sucur.getDireccion());
+        clonado.setResponsable(sucur.getResponsable());
+        clonado.setNombreSucursal(sucur.getNombreSucursal());
+        
+        return clonado;
     }
-
+    
     private String validarSucursales(Sucursales Sucursal) {
         if (Sucursal.getCodigo() < 0 ) {
             return "Ingrese Codigo";
@@ -91,8 +116,8 @@ public class LotoServices {
         if (Sucursal.getRTN() < 0) {
             return "ingrese RTN";
         }
-        if (Sucursal.getNombre() == null || 
-                Sucursal.getNombre().equals("") ) {
+        if (Sucursal.getNombreSucursal() == null || 
+                Sucursal.getNombreSucursal().equals("") ) {
             return "Ingrese un Nombre";
         }
         if (Sucursal.getDireccion() == null || 
