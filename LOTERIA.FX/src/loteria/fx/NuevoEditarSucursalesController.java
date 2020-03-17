@@ -7,7 +7,6 @@ package loteria.fx;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -15,9 +14,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
 import loteria.bl.Sucursales;
@@ -46,9 +42,6 @@ public class NuevoEditarSucursalesController implements Initializable {
     
     @FXML
     JFXButton btnCancelar;
-    
-    @FXML
-    ImageView imgViewImagen;
     
     private FormSucursalController controller;
     private Sucursales Sucursal;
@@ -93,27 +86,7 @@ public class NuevoEditarSucursalesController implements Initializable {
         txtRTN.textProperty().bindBidirectional(Sucursal.RTNProperty(), new NumberStringConverter());        
         txtNombreSuc.textProperty().bindBidirectional(Sucursal.NombreProperty());        
         txtDireccion.textProperty().bindBidirectional(Sucursal.DireccionProperty());        
-        txtNombreRepe.textProperty().bindBidirectional(Sucursal.ResponsableProperty());
-        imgViewImagen.imageProperty().bind(Sucursal.imageViewProperty());
+        txtNombreRepe.textProperty().bindBidirectional(Sucursal.ResponsableProperty());              
     }
-    public void agregarImagen() {
-        FileChooser fc = new FileChooser();
-        FileChooser.ExtensionFilter extensiones = 
-          new FileChooser.ExtensionFilter(
-            "Imagenes", "*.jpg", "*.png");
-
-        fc.getExtensionFilters().add(extensiones);
-
-        File archivo = fc.showOpenDialog(null);
-
-        if (archivo != null) {
-            Image image = new Image(archivo.toURI().toString());
-            Sucursal.setImageView(image);
-        }
-
-    }
-
-    public void removerImagen() {
-        Sucursal.setImageView(null);
-    }
+    
 }

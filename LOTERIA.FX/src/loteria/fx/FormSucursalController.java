@@ -25,7 +25,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import loteria.bl.LotoServices;
@@ -80,9 +79,6 @@ public class FormSucursalController implements Initializable {
     
     @FXML
     private TableColumn colEliminar;
-    
-    @FXML
-    private TableColumn colImagen;
     
     Sucursales Suc;
     
@@ -213,26 +209,5 @@ public class FormSucursalController implements Initializable {
         });        
     }
     
-     private void definitColumnaImagen() {
-        colImagen.setCellFactory(param -> new TableCell<String, String>() {
-            final ImageView img = new ImageView();
-
-            @Override
-            public void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) {
-                    setGraphic(null);
-                    setText(null);
-                } else {
-                    Sucursales sucursales = (Sucursales) getTableRow().getItem();
-                    img.imageProperty().set(sucursales.getImageView());
-                    img.setFitWidth(100);
-                    img.setPreserveRatio(true);
-
-                    setGraphic(img);
-                    setText(null);
-                }
-            }            
-        });         
-    }
+    
 }

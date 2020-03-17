@@ -105,8 +105,7 @@ public class LotoServices {
         clonado.setDireccion(sucur.getDireccion());
         clonado.setResponsable(sucur.getResponsable());
         clonado.setNombreSucursal(sucur.getNombreSucursal());
-        clonado.setImagen(sucur.getImagen());
-
+        
         return clonado;
     }
     
