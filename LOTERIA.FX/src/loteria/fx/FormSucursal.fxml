@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="494.0" prefWidth="664.0" stylesheets="@main.css" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loteria.fx.FormSucursalController">
+<VBox prefHeight="516.0" prefWidth="964.0" stylesheets="@main.css" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loteria.fx.FormSucursalController">
    <children>
       <HBox prefHeight="199.0" prefWidth="664.0">
          <children>
@@ -42,6 +42,7 @@
       
       <TableView fx:id="tbSucursales" layoutX="418.0" layoutY="26.0" prefHeight="481.0" prefWidth="526.0" VBox.vgrow="ALWAYS">
         <columns>
+            <TableColumn fx:id="colImagen" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" />
           <TableColumn fx:id="colCodigo" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" text="Código" />
           <TableColumn fx:id="colRTN" minWidth="60.0" prefWidth="100.0" text="RTN" />
           <TableColumn fx:id="colResponsable" maxWidth="500.0" prefWidth="200.0" text="Responsable" />
