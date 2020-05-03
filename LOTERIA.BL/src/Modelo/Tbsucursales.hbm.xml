@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-may-2020 21:08:17 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Tbsucursales" table="tbsucursales" catalog="loteriadb" optimistic-lock="version">
+        <id name="codigo" type="int">
+            <column name="codigo" />
+            <generator class="assigned" />
+        </id>
+        <property name="rtn" type="int">
+            <column name="RTN" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" />
+        </property>
+        <property name="nombreSucursal" type="string">
+            <column name="nombreSucursal" />
+        </property>
+        <property name="responsable" type="string">
+            <column name="responsable" />
+        </property>
+        <property name="imagen" type="binary">
+            <column name="imagen" />
+        </property>
+        <set name="tbticketheaders" table="tbticketheader" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="suc_Id" not-null="true" />
+            </key>
+            <one-to-many class="Modelo.Tbticketheader" />
+        </set>
+    </class>
+</hibernate-mapping>

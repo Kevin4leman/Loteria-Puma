@@ -52,7 +52,6 @@ public class LotoServices {
         if (resultado.equals("")) 
         {                   
             Session session = HibernateUtil.getSessionFactory().openSession();
-            
             Transaction tx = session.beginTransaction();
             
             try

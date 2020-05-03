@@ -2,9 +2,12 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -12,86 +15,102 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox prefHeight="458.0" prefWidth="742.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loteria.fx.VentasController">
    <children>
-      <HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="722.0">
+      <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS">
          <children>
-            <VBox prefHeight="400.0" prefWidth="322.0">
+            <VBox prefHeight="400.0" prefWidth="259.0" HBox.hgrow="ALWAYS">
                <children>
-                  <ToolBar prefHeight="80.0" prefWidth="227.0">
-                    <items>
-                      <Button mnemonicParsing="false" prefHeight="67.0" prefWidth="87.0" text="Juego #1" />
-                    </items>
-                  </ToolBar>
-                  <ToolBar prefHeight="80.0" prefWidth="314.0">
-                     <items>
-                        <Button mnemonicParsing="false" prefHeight="67.0" prefWidth="87.0" text="L. 5.00" />
-                     </items>
-                  </ToolBar>
+                  <ScrollPane hbarPolicy="ALWAYS" prefHeight="91.0" prefWidth="254.0" vbarPolicy="NEVER">
+                     <content>
+                        <HBox fx:id="GamesBar" alignment="CENTER_LEFT" prefHeight="74.0" prefWidth="200.0" spacing="5.0">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane hbarPolicy="ALWAYS" prefHeight="91.0" prefWidth="254.0" vbarPolicy="NEVER">
+                     <content>
+                        <HBox fx:id="BetsBar" alignment="CENTER_LEFT" prefHeight="74.0" prefWidth="200.0" spacing="5.0">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </content>
+                  </ScrollPane>
+                  <HBox alignment="CENTER" prefHeight="222.0" prefWidth="254.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="153.0" prefWidth="120.0" spacing="15.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label text="Juego">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Apuesta">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Jugadas">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Total">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="153.0" prefWidth="138.0" spacing="15.0" HBox.hgrow="ALWAYS">
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <children>
+                              <Label fx:id="GameLabel" text="--">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="CurrentBetLabel" text="0.00">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="TotalPlaysLabel" text="0">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="TotalBetsLabel" text="0.00">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
             <Separator orientation="VERTICAL" prefHeight="200.0" />
-            <VBox prefHeight="400.0" prefWidth="411.0">
+            <VBox prefHeight="400.0" prefWidth="358.0" HBox.hgrow="ALWAYS">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                  <HBox fx:id="NumbersBar" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                      <children>
-                        <TextField alignment="CENTER" prefHeight="45.0" prefWidth="60.0" text="05">
-                           <font>
-                              <Font size="31.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
-                           </padding>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" prefHeight="45.0" prefWidth="60.0" text="05">
-                           <font>
-                              <Font size="31.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
-                           </padding>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" prefHeight="45.0" prefWidth="60.0" text="05">
-                           <font>
-                              <Font size="31.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
-                           </padding>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" prefHeight="45.0" prefWidth="60.0" text="05">
-                           <font>
-                              <Font size="31.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
-                           </padding>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" prefHeight="45.0" prefWidth="60.0" text="05">
-                           <font>
-                              <Font size="31.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
-                           </padding>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </TextField>
-                        <TextField alignment="CENTER" prefHeight="45.0" prefWidth="60.0" text="05">
+                        <TextField fx:id="txtNumero" alignment="CENTER" editable="false" prefHeight="45.0" prefWidth="60.0">
                            <font>
                               <Font size="31.0" />
                            </font>
@@ -103,8 +122,11 @@
                            </HBox.margin>
                         </TextField>
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
                   </HBox>
-                  <GridPane alignment="CENTER" prefHeight="293.0" prefWidth="403.0" VBox.vgrow="NEVER">
+                  <GridPane alignment="CENTER" prefHeight="500.0" VBox.vgrow="NEVER">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -117,57 +139,57 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="1">
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#HandleButton1" text="1">
                            <font>
                               <Font name="System Bold" size="26.0" />
                            </font>
                         </Button>
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="2" GridPane.columnIndex="1">
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#HandleButton2" text="2" GridPane.columnIndex="1">
                            <font>
                               <Font name="System Bold" size="26.0" />
                            </font>
                         </Button>
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="3" GridPane.columnIndex="2">
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#HandleButton3" text="3" GridPane.columnIndex="2">
                            <font>
                               <Font name="System Bold" size="26.0" />
                            </font>
                         </Button>
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="6" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#HandleButton6" text="6" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="26.0" />
                            </font>
                         </Button>
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#HandleButton5" text="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="26.0" />
                            </font>
                         </Button>
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="4" GridPane.rowIndex="1">
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#HandleButton4" text="4" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="26.0" />
                            </font>
                         </Button>
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="7" GridPane.rowIndex="2">
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#HandleButton7" text="7" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="26.0" />
                            </font>
                         </Button>
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="8" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#HandleButton8" text="8" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="26.0" />
                            </font>
                         </Button>
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="9" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#HandleButton9" text="9" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="26.0" />
                            </font>
                         </Button>
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#HandleButton0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="26.0" />
                            </font>
                         </Button>
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="&lt;-" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#HandleButtonBackspace" text="&lt;-" GridPane.columnIndex="2" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="26.0" />
                            </font>
@@ -176,16 +198,31 @@
                   </GridPane>
                </children>
             </VBox>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <TableView fx:id="TicketTable" prefHeight="400.0" prefWidth="237.0" HBox.hgrow="ALWAYS">
+              <columns>
+                <TableColumn fx:id="JugadaColumn" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="120.0" text="Jugada" />
+                <TableColumn fx:id="ApuestaColumn" maxWidth="130.0" minWidth="100.0" prefWidth="-1.0" text="Apuesta" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
          </children>
       </HBox>
       <Separator prefWidth="200.0" />
-      <HBox alignment="CENTER_RIGHT" prefHeight="58.0" prefWidth="722.0">
+      <HBox alignment="CENTER_RIGHT" prefHeight="55.0" prefWidth="609.0" spacing="20.0">
          <children>
-            <Button mnemonicParsing="false" text="Button" />
+            <Button mnemonicParsing="false" onAction="#NewTicket" prefHeight="35.0" prefWidth="119.0" text="CANCELAR VENTA" />
+            <Button mnemonicParsing="false" onAction="#GuardarJugada" prefHeight="35.0" prefWidth="119.0" text="GUARDAR JUGADA" />
+            <Button mnemonicParsing="false" onAction="#ProcesarTicket" prefHeight="35.0" prefWidth="119.0" text="TERMINAR VENTA" />
          </children>
          <padding>
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </padding>
       </HBox>
    </children>
+   <padding>
+      <Insets bottom="45.0" left="45.0" right="45.0" top="45.0" />
+   </padding>
 </VBox>

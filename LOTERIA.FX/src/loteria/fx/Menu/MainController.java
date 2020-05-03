@@ -109,7 +109,7 @@ public class MainController implements Initializable, AbrirFormularioCallback {
     @Override
     public void abrirFormulario(String nombreFormulario) {
         try {
-            form = FXMLLoader.load(getClass().getResource(("/loteria/fx/FormSucursal.fxml")));
+            form = FXMLLoader.load(getClass().getResource(("/loteria/fx/"+nombreFormulario+".fxml")));
             drawerStack.setContent(form);
         } catch (IOException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);

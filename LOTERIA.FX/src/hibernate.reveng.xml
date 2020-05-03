@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <!--
 DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
 
@@ -39,26 +39,13 @@ made subject to such option by the copyright holder.
 
 Contributor(s):
 -->
-<hibernate-configuration>
-  <session-factory>
-    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">123456789</property>
-    <property name="current_session_context_class">thread</property>
-    <!-- Disable the second-level cache -->
-    <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
-    <!-- Echo all executed SQL to stdout -->
-    <property name="show_sql">true</property>
-    <!-- Drop and re-create the database schema on startup -->
-    <property name="hbm2ddl.auto">update</property>
-    <property name="hibernate.connection.url">jdbc:mysql://127.0.01:3306/loteriadb?serverTimezone=UTC</property>
-    <mapping resource="Modelo/Tbsorteos.hbm.xml"/>
-    <mapping resource="Modelo/Tbjugadadetalle.hbm.xml"/>
-    <mapping resource="Modelo/Tbjuegos.hbm.xml"/>
-    <mapping resource="Modelo/Tbjugada.hbm.xml"/>
-    <mapping resource="Modelo/Tbsucursales.hbm.xml"/>
-    <mapping resource="Modelo/Tbticketheader.hbm.xml"/>
-    <mapping resource="Modelo/Tbsorteosresultados.hbm.xml"/>
-  </session-factory>
-</hibernate-configuration>
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="loteriadb"/>
+  <table-filter match-name="tbsucursales"/>
+  <table-filter match-name="tbticketheader"/>
+  <table-filter match-name="tbsorteosresultados"/>
+  <table-filter match-name="tbjugadadetalle"/>
+  <table-filter match-name="tbjugada"/>
+  <table-filter match-name="tbjuegos"/>
+  <table-filter match-name="tbsorteos"/>
+</hibernate-reverse-engineering>

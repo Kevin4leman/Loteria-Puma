@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-may-2020 21:08:17 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Tbjugada" table="tbjugada" catalog="loteriadb" optimistic-lock="version">
+        <id name="jdaId" type="java.lang.Integer">
+            <column name="jda_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tbjuegos" class="Modelo.Tbjuegos" fetch="select">
+            <column name="jgo_Id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tbticketheader" class="Modelo.Tbticketheader" fetch="select">
+            <column name="tkhe_Id" not-null="true" />
+        </many-to-one>
+        <property name="jdaApuesta" type="int">
+            <column name="jda_Apuesta" not-null="true" />
+        </property>
+        <property name="jdadetId" type="int">
+            <column name="jdadet_Id" not-null="true" />
+        </property>
+        <set name="tbjugadadetalles" table="tbjugadadetalle" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="jda_id" not-null="true" />
+            </key>
+            <one-to-many class="Modelo.Tbjugadadetalle" />
+        </set>
+    </class>
+</hibernate-mapping>

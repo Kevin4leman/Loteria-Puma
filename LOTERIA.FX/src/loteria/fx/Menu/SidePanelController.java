@@ -17,7 +17,7 @@ public class SidePanelController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         listView.getItems().add(new Label("Sucursales"));
-//        listView.getItems().add(new Label("Clientes"));
+        listView.getItems().add(new Label("Ventas"));
 //        listView.getItems().add(new Label("Facturas"));
 //        listView.getItems().add(new Label("Reportes"));   
         listView.getItems().add(new Label("Salir"));   

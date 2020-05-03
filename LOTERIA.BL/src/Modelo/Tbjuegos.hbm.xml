@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-may-2020 21:08:17 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Tbjuegos" table="tbjuegos" catalog="loteriadb" optimistic-lock="version">
+        <id name="jgoId" type="java.lang.Integer">
+            <column name="jgo_Id" />
+            <generator class="identity" />
+        </id>
+        <property name="jgoDescripcion" type="string">
+            <column name="jgo_Descripcion" length="50" />
+        </property>
+        <property name="jgoCantNumeros" type="java.lang.Integer">
+            <column name="jgo_CantNumeros" />
+        </property>
+        <property name="jgoMinNumero" type="java.lang.Integer">
+            <column name="jgo_MinNumero" />
+        </property>
+        <property name="jgoMaxNumero" type="java.lang.Integer">
+            <column name="jgo_MaxNumero" />
+        </property>
+        <property name="jgoApuestaMin" type="java.lang.Integer">
+            <column name="jgo_ApuestaMin" />
+        </property>
+        <set name="tbjugadas" table="tbjugada" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="jgo_Id" not-null="true" />
+            </key>
+            <one-to-many class="Modelo.Tbjugada" />
+        </set>
+        <set name="tbsorteoses" table="tbsorteos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="jgo_Id" />
+            </key>
+            <one-to-many class="Modelo.Tbsorteos" />
+        </set>
+    </class>
+</hibernate-mapping>

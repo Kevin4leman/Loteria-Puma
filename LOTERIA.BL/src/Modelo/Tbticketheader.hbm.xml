@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-may-2020 21:08:17 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Tbticketheader" table="tbticketheader" catalog="loteriadb" optimistic-lock="version">
+        <id name="tkheId" type="java.lang.Integer">
+            <column name="tkhe_Id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tbsorteos" class="Modelo.Tbsorteos" fetch="select">
+            <column name="sort_Id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tbsucursales" class="Modelo.Tbsucursales" fetch="select">
+            <column name="suc_Id" not-null="true" />
+        </many-to-one>
+        <property name="tkheFechaVenta" type="timestamp">
+            <column name="tkhe_FechaVenta" length="19" not-null="true" />
+        </property>
+        <property name="tkheSerialNumber" type="string">
+            <column name="tkhe_SerialNumber" length="15" not-null="true" />
+        </property>
+        <set name="tbjugadas" table="tbjugada" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tkhe_Id" not-null="true" />
+            </key>
+            <one-to-many class="Modelo.Tbjugada" />
+        </set>
+    </class>
+</hibernate-mapping>
