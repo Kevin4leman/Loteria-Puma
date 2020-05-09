@@ -9,7 +9,7 @@
 <!--<AnchorPane id="AnchorPane" fx:id="root" prefHeight="555.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pos.fx.Menu.MainController">-->
 <!--</AnchorPane>-->
 
-<AnchorPane id="AnchorPane" fx:id="root" minHeight="555.0" prefHeight="556.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loteria.fx.Menu.MainController">
+<AnchorPane id="AnchorPane" fx:id="root" minHeight="720.0" prefHeight="720.0" prefWidth="1160.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loteria.fx.Menu.MainController">
     <children>
         <JFXDrawersStack fx:id="drawerStack">
             <content>

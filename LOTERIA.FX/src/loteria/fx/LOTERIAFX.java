@@ -11,7 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sample.LoginController;
+import loteria.fx.Login.LoginController;
 import loteria.fx.Menu.MainController;
 
 /**
@@ -28,7 +28,6 @@ public class LOTERIAFX extends Application {
     }
 
     Tbusuarios UsuarioActivo = null;
-/*
     @Override
     public void start(Stage stage) throws Exception {
         LOTERIAFX.stage = stage;
@@ -40,9 +39,8 @@ public class LOTERIAFX extends Application {
         stage.setScene(scene);
         stage.setTitle("Loterias");
 
-        //stage.show();
         Stage LoginStage = new Stage();
-        FXMLLoader loaderLogin = new FXMLLoader(getClass().getResource("/loteria/fx/sample/profile.fxml"));
+        FXMLLoader loaderLogin = new FXMLLoader(getClass().getResource("/loteria/fx/Login/profile.fxml"));
         Parent LoginRoot = (Parent) loaderLogin.load();
         LoginController LogCon = loaderLogin.getController();
 
@@ -62,8 +60,8 @@ public class LOTERIAFX extends Application {
             }
         });
     }
-*/
-    
+
+    /*
         @Override
     public void start(Stage stage) throws Exception {
         LOTERIAFX.stage = stage;
@@ -78,6 +76,7 @@ public class LOTERIAFX extends Application {
         stage.show();
 
     }
+    */
     private void UpdateUserData() {
 
     }

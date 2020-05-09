@@ -5,6 +5,7 @@
  */
 package loteria.bl;
 
+import Modelo.Tbsucursales;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -18,13 +19,13 @@ import org.hibernate.criterion.Restrictions;
  * @author Chris
  */
 public class LotoServices {
-    public ArrayList<Sucursales> obtenerSucursaless() {
+    public ArrayList<Tbsucursales> obtenerSucursaless() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         
         Transaction tx = session.beginTransaction();
         
-        Criteria query = session.createCriteria(Sucursales.class);
-        List<Sucursales> resultado = query.list();
+        Criteria query = session.createCriteria(Tbsucursales.class);
+        List<Tbsucursales> resultado = query.list();
         
         tx.commit();
         session.close();
@@ -32,21 +33,21 @@ public class LotoServices {
         return new ArrayList<>(resultado);
     }
 
-    public ArrayList<Sucursales> obtenerSucursaless(String buscar) {
+    public ArrayList<Tbsucursales> obtenerSucursaless(String buscar) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         
         Transaction tx = session.beginTransaction();
         
-        Criteria query = session.createCriteria(Sucursales.class);
+        Criteria query = session.createCriteria(Tbsucursales.class);
         query.add(Restrictions.like("nombreSucursal", buscar, MatchMode.ANYWHERE));
-        List<Sucursales> resultado = query.list();
+        List<Tbsucursales> resultado = query.list();
         tx.commit();
         session.close();
         
         return new ArrayList<>(resultado);
     }
     
-    public String guardar(Sucursales Sucursal) { 
+    public String guardar(Tbsucursales Sucursal) { 
         String resultado = validarSucursales(Sucursal);
         
         if (resultado.equals("")) 
@@ -74,7 +75,7 @@ public class LotoServices {
         return resultado;
     }
     
-    public void eliminar(Sucursales Sucursal) {
+    public void eliminar(Tbsucursales Sucursal) {
             Session session = HibernateUtil.getSessionFactory().openSession();
             Transaction tx = session.beginTransaction();
             
@@ -95,12 +96,12 @@ public class LotoServices {
     }
     
 
-    public Sucursales Clonar(Sucursales sucur)
+    public Tbsucursales Clonar(Tbsucursales sucur)
     {
-        Sucursales clonado = new Sucursales();
+        Tbsucursales clonado = new Tbsucursales();
         
         clonado.setCodigo(sucur.getCodigo());
-        clonado.setRTN(sucur.getRTN());
+        clonado.setRtn(sucur.getRtn());
         clonado.setDireccion(sucur.getDireccion());
         clonado.setResponsable(sucur.getResponsable());
         clonado.setNombreSucursal(sucur.getNombreSucursal());
@@ -108,11 +109,11 @@ public class LotoServices {
         return clonado;
     }
     
-    private String validarSucursales(Sucursales Sucursal) {
+    private String validarSucursales(Tbsucursales Sucursal) {
         if (Sucursal.getCodigo() < 0 ) {
             return "Ingrese Codigo";
         }
-        if (Sucursal.getRTN() < 0) {
+        if (Sucursal.getRtn()< 0) {
             return "ingrese RTN";
         }
         if (Sucursal.getNombreSucursal() == null || 

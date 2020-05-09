@@ -42,7 +42,7 @@ public class MainController implements Initializable, AbrirFormularioCallback {
     StackPane pane;
 
     VBox form;
-
+    
     private Tbusuarios userActivo;
 
     public Tbusuarios getUser() {
@@ -56,16 +56,12 @@ public class MainController implements Initializable, AbrirFormularioCallback {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if (!LOTERIAFX.isSplashLoaded) {
-            loadSplashScreen();
-        }
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/loteria/fx/Menu/sidepanel.fxml"));
             VBox box = loader.load();
             controller = loader.getController();
             controller.setCallback(this);
             drawer.setSidePane(box);
-
             FitControlsToWindow();
         } catch (IOException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);

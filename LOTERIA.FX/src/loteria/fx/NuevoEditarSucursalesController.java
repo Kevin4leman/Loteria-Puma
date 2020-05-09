@@ -20,7 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
-import loteria.bl.Sucursales;
+import Modelo.Tbsucursales;
 
 /**
  * FXML Controller class
@@ -51,7 +51,7 @@ public class NuevoEditarSucursalesController implements Initializable {
     ImageView imgViewImagen;
     
     private FormSucursalController controller;
-    private Sucursales Sucursal;
+    private Tbsucursales Sucursal;
     /**
      * Initializes the controller class.
      */
@@ -86,15 +86,8 @@ public class NuevoEditarSucursalesController implements Initializable {
         this.controller = controller;
     }
     
-    public void setSucursal(Sucursales Sucursal) {
+    public void setSucursal(Tbsucursales Sucursal) {
         this.Sucursal = Sucursal;
-        
-        txtCodigo.textProperty().bindBidirectional(Sucursal.idProperty(), new NumberStringConverter());
-        txtRTN.textProperty().bindBidirectional(Sucursal.RTNProperty(), new NumberStringConverter());        
-        txtNombreSuc.textProperty().bindBidirectional(Sucursal.NombreProperty());        
-        txtDireccion.textProperty().bindBidirectional(Sucursal.DireccionProperty());        
-        txtNombreRepe.textProperty().bindBidirectional(Sucursal.ResponsableProperty());
-        imgViewImagen.imageProperty().bind(Sucursal.imageViewProperty());
     }
     public void agregarImagen() {
         FileChooser fc = new FileChooser();

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox id="AnchorPane" prefHeight="400.0" prefWidth="1016.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loteria.fx.JuegosController">
+    <children>
+      <HBox prefHeight="199.0" prefWidth="664.0">
+         <children>
+            <Label style="-fx-font-size: 32;" text="JUEGOS" textFill="#271bc9" />
+         </children></HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+         <VBox.margin>
+            <Insets bottom="10.0" top="10.0" />
+         </VBox.margin>
+         <children>
+            <HBox alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="223.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <JFXTextField fx:id="txtBuscar" prefHeight="25.0" prefWidth="208.0" />
+                  <JFXButton fx:id="btnBuscar" mnemonicParsing="false" onAction="#buscar" styleClass="jfx-button-flat" text="Buscar" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="47.0" prefWidth="72.0">
+               <children>
+                  <JFXButton fx:id="btnNuevo" mnemonicParsing="false" onAction="#nuevoSucursales" styleClass="jfx-button-info" text="Nuevo" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets right="30.0" />
+               </HBox.margin>
+            </HBox>
+         </children>
+      </HBox>
+      
+      <TableView fx:id="tbSucursales" layoutX="418.0" layoutY="26.0" prefHeight="481.0" prefWidth="526.0" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colImagen" maxWidth="0.0" minWidth="60.0" prefWidth="0.0" />
+          <TableColumn fx:id="colCodigo" maxWidth="329.0" minWidth="60.0" prefWidth="235.0" text="Descripcion" />
+            <TableColumn prefWidth="182.0" text="Numeros" />
+          <TableColumn fx:id="colResponsable" maxWidth="514.0" minWidth="0.0" prefWidth="176.0" text="Numero minimo" />
+          <TableColumn fx:id="colNombreSuc" maxWidth="453.0" minWidth="0.0" prefWidth="94.0" text="Numero maximo" />
+          <TableColumn fx:id="colDireccion" maxWidth="368.0" minWidth="0.0" prefWidth="362.0" text="Apuesta minima" /> 
+        </columns>
+      </TableView>
+   </children>
+</VBox>

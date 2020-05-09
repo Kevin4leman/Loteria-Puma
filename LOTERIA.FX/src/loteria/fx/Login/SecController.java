@@ -1,4 +1,4 @@
-package sample;
+package loteria.fx.Login;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

@@ -267,8 +267,10 @@ public class VentasController implements Initializable {
                     TActions.TbJugadaDetalleInsert(jgdet);
                 }
             }
+            TableData.clear();
+            TicketTable.refresh();
+            NewTicket();
         }
-        return;
     }
     
     private void UpdateCurrentbet(int bet)

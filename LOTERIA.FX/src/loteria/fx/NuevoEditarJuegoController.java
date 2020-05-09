@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MenuTesting;
+package loteria.fx;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author Chris
  */
-public class MainMenuController implements Initializable {
+public class NuevoEditarJuegoController implements Initializable {
 
     /**
      * Initializes the controller class.

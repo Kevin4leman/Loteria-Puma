@@ -1,4 +1,4 @@
-package sample;
+package loteria.fx.Login;
 
 import Modelo.Tbusuarios;
 import javafx.event.ActionEvent;

@@ -30,7 +30,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import loteria.bl.LotoServices;
 import loteria.bl.Prueba;
-import loteria.bl.Sucursales;
+import Modelo.Tbsucursales;
 
 /**
  * FXML Controller class
@@ -84,11 +84,11 @@ public class FormSucursalController implements Initializable {
     @FXML
     private TableColumn colImagen;
     
-    Sucursales Suc;
+    Tbsucursales Suc;
     
     LotoServices servicio;
     
-    ObservableList<Sucursales> dataSucursales;
+    ObservableList<Tbsucursales> dataSucursales;
             
     /**
      * Initializes the controller class.
@@ -115,7 +115,7 @@ public class FormSucursalController implements Initializable {
     
 //    
     public void nuevoSucursales() throws IOException {
-        Sucursales nuevoSucursales = new Sucursales();
+        Tbsucursales nuevoSucursales = new Tbsucursales();
         abrirVentanaModal(nuevoSucursales, "Nuevo Sucursales");
     }
 //    
@@ -123,7 +123,7 @@ public class FormSucursalController implements Initializable {
         cargarDatos();
     }
 //    
-    public String guardar(Sucursales Sucursal) {
+    public String guardar(Tbsucursales Sucursal) {
         String resultado = servicio.guardar(Sucursal);
         if (resultado.equals("")) {
             cargarDatos();          
@@ -143,7 +143,7 @@ public class FormSucursalController implements Initializable {
        tbSucursales.refresh();
     }
 //
-    private void abrirVentanaModal(Sucursales Sucursal, String titulo) throws IOException {
+    private void abrirVentanaModal(Tbsucursales Sucursal, String titulo) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("NuevoEditarSucursales.fxml"));
         Parent root = (Parent) loader.load();
         
@@ -174,8 +174,8 @@ public class FormSucursalController implements Initializable {
                     btn.getStyleClass().add("jfx-button-info-outline");
                     btn.setOnAction(event -> {
                         tbSucursales.getSelectionModel().select(getTableRow().getItem());
-                        Sucursales SucurExistente = (Sucursales) getTableRow().getItem();
-                        Sucursales Sucursal = servicio.Clonar(SucurExistente);
+                        Tbsucursales SucurExistente = (Tbsucursales) getTableRow().getItem();
+                        Tbsucursales Sucursal = servicio.Clonar(SucurExistente);
                         try {
                             abrirVentanaModal(Sucursal, "Editar Sucursales");
                         } catch (IOException ex) {
@@ -203,7 +203,7 @@ public class FormSucursalController implements Initializable {
                     btn.getStyleClass().add("jfx-button-danger-outline");
                     btn.setOnAction(event -> {
                         tbSucursales.getSelectionModel().select(getTableRow().getItem());
-                        Sucursales Sucursales = (Sucursales) getTableRow().getItem();
+                        Tbsucursales Sucursales = (Tbsucursales) getTableRow().getItem();
                         servicio.eliminar(Sucursales);
                         cargarDatos();
                     });
@@ -225,7 +225,7 @@ public class FormSucursalController implements Initializable {
                     setGraphic(null);
                     setText(null);
                 } else {
-                    Sucursales Sucursales = (Sucursales) getTableRow().getItem();
+                    Tbsucursales Sucursales = (Tbsucursales) getTableRow().getItem();
                     img.imageProperty().set(Sucursales.getImageView());
                     img.setFitWidth(100);
                     img.setPreserveRatio(true);
