@@ -1,5 +1,5 @@
 package Modelo;
-// Generated 01-may-2020 21:08:17 by Hibernate Tools 4.3.1
+// Generated 07-may-2020 20:54:24 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,37 +11,37 @@ import java.util.Set;
 public class Tbsucursales  implements java.io.Serializable {
 
 
-     private int codigo;
+     private Integer codigo;
      private int rtn;
      private String direccion;
      private String nombreSucursal;
      private String responsable;
      private byte[] imagen;
+     private Set tbusuarioses = new HashSet(0);
      private Set tbticketheaders = new HashSet(0);
 
     public Tbsucursales() {
     }
 
 	
-    public Tbsucursales(int codigo, int rtn) {
+    public Tbsucursales(int codigo) {
         this.codigo = codigo;
-        this.rtn = rtn;
     }
-    public Tbsucursales(int codigo, int rtn, String direccion, String nombreSucursal, String responsable, byte[] imagen, Set tbticketheaders) {
-       this.codigo = codigo;
+    public Tbsucursales(int rtn, String direccion, String nombreSucursal, String responsable, byte[] imagen, Set tbusuarioses, Set tbticketheaders) {
        this.rtn = rtn;
        this.direccion = direccion;
        this.nombreSucursal = nombreSucursal;
        this.responsable = responsable;
        this.imagen = imagen;
+       this.tbusuarioses = tbusuarioses;
        this.tbticketheaders = tbticketheaders;
     }
    
-    public int getCodigo() {
+    public Integer getCodigo() {
         return this.codigo;
     }
     
-    public void setCodigo(int codigo) {
+    public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
     public int getRtn() {
@@ -78,6 +78,13 @@ public class Tbsucursales  implements java.io.Serializable {
     
     public void setImagen(byte[] imagen) {
         this.imagen = imagen;
+    }
+    public Set getTbusuarioses() {
+        return this.tbusuarioses;
+    }
+    
+    public void setTbusuarioses(Set tbusuarioses) {
+        this.tbusuarioses = tbusuarioses;
     }
     public Set getTbticketheaders() {
         return this.tbticketheaders;

@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 01-may-2020 21:08:17 by Hibernate Tools 4.3.1 -->
+<!-- Generated 07-may-2020 20:54:25 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Modelo.Tbsorteosresultados" table="tbsorteosresultados" catalog="loteriadb" optimistic-lock="version">
-        <id name="sresId" type="java.lang.Integer">
+        <id name="sresId" type="int">
             <column name="sres_id" />
-            <generator class="identity" />
+            <generator class="assigned" />
         </id>
         <many-to-one name="tbsorteos" class="Modelo.Tbsorteos" fetch="select">
             <column name="sort_id" not-null="true" />

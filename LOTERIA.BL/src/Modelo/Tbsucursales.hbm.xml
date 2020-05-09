@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 01-may-2020 21:08:17 by Hibernate Tools 4.3.1 -->
+<!-- Generated 07-may-2020 20:54:25 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Modelo.Tbsucursales" table="tbsucursales" catalog="loteriadb" optimistic-lock="version">
-        <id name="codigo" type="int">
+        <id name="codigo" type="java.lang.Integer">
             <column name="codigo" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="rtn" type="int">
             <column name="RTN" not-null="true" />
@@ -23,6 +23,12 @@
         <property name="imagen" type="binary">
             <column name="imagen" />
         </property>
+        <set name="tbusuarioses" table="tbusuarios" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Suc_Codigo" />
+            </key>
+            <one-to-many class="Modelo.Tbusuarios" />
+        </set>
         <set name="tbticketheaders" table="tbticketheader" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="suc_Id" not-null="true" />

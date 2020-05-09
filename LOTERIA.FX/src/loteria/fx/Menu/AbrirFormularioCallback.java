@@ -5,11 +5,13 @@
  */
 package loteria.fx.Menu;
 
+import Modelo.Tbusuarios;
+
 /**
  *
  * @author billy
  */
 public interface AbrirFormularioCallback {
-    void abrirFormulario(String nombreFormulario);
+    void abrirFormulario(String nombreFormulario, Tbusuarios User);
 }
 

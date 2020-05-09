@@ -11,6 +11,7 @@ import Modelo.Tbjugadadetalle;
 import Modelo.Tbsorteos;
 import Modelo.Tbsucursales;
 import Modelo.Tbticketheader;
+import Modelo.Tbusuarios;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.text.DateFormat;
@@ -108,6 +109,16 @@ public class VentasController implements Initializable {
     
     private ArrayList<VentasTbViewObj> RowList;
     
+    private Tbusuarios User;
+
+    public Tbusuarios getUser() {
+        return User;
+    }
+
+    public void setUser(Tbusuarios User) {
+        this.User = User;
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         TActions = new TableActions();
@@ -126,17 +137,17 @@ public class VentasController implements Initializable {
         JugadaColumn.setCellValueFactory(new PropertyValueFactory<>("Jugada"));
         ApuestaColumn.setCellValueFactory(new PropertyValueFactory<>("Apuesta"));
         
-        NewTicket();
+        //NewTicket();
         
         
         System.out.println(Servicio.GenerarSerie(15));
     }
     
     @FXML
-    private void NewTicket()
+    public void NewTicket()
     {
         TicketH = new Tbticketheader();
-        TicketH.setTbsucursales(new Tbsucursales(1, 123456));
+        TicketH.setTbsucursales(User.getTbsucursales());
         UpdateCurrentbet(0);
         TotalBets.setValue(0);
         TotalPlays.setValue(0);

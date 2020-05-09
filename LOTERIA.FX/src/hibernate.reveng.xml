@@ -41,11 +41,12 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="loteriadb"/>
-  <table-filter match-name="tbsucursales"/>
-  <table-filter match-name="tbticketheader"/>
-  <table-filter match-name="tbsorteosresultados"/>
   <table-filter match-name="tbjugadadetalle"/>
+  <table-filter match-name="tbsorteos"/>
+  <table-filter match-name="tbusuarios"/>
+  <table-filter match-name="tbticketheader"/>
   <table-filter match-name="tbjugada"/>
   <table-filter match-name="tbjuegos"/>
-  <table-filter match-name="tbsorteos"/>
+  <table-filter match-name="tbsucursales"/>
+  <table-filter match-name="tbsorteosresultados"/>
 </hibernate-reverse-engineering>

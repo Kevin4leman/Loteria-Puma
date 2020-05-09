@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 07-may-2020 20:54:25 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Tbusuarios" table="tbusuarios" catalog="loteriadb" optimistic-lock="version">
+        <id name="userId" type="int">
+            <column name="User_Id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="tbsucursales" class="Modelo.Tbsucursales" fetch="select">
+            <column name="Suc_Codigo" />
+        </many-to-one>
+        <property name="userName" type="string">
+            <column name="User_Name" length="50" not-null="true" />
+        </property>
+        <property name="userPassword" type="string">
+            <column name="User_Password" length="50" not-null="true" />
+        </property>
+        <property name="userRole" type="string">
+            <column name="User_Role" length="3" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

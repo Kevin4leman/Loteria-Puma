@@ -1,5 +1,5 @@
 package Modelo;
-// Generated 01-may-2020 21:08:17 by Hibernate Tools 4.3.1
+// Generated 07-may-2020 20:54:24 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class Tbsorteos  implements java.io.Serializable {
 
 
-     private int sortId;
+     private Integer sortId;
      private Tbjuegos tbjuegos;
      private Set tbsorteosresultadoses = new HashSet(0);
      private Set tbticketheaders = new HashSet(0);
@@ -19,22 +19,17 @@ public class Tbsorteos  implements java.io.Serializable {
     public Tbsorteos() {
     }
 
-	
-    public Tbsorteos(int sortId) {
-        this.sortId = sortId;
-    }
-    public Tbsorteos(int sortId, Tbjuegos tbjuegos, Set tbsorteosresultadoses, Set tbticketheaders) {
-       this.sortId = sortId;
+    public Tbsorteos(Tbjuegos tbjuegos, Set tbsorteosresultadoses, Set tbticketheaders) {
        this.tbjuegos = tbjuegos;
        this.tbsorteosresultadoses = tbsorteosresultadoses;
        this.tbticketheaders = tbticketheaders;
     }
    
-    public int getSortId() {
+    public Integer getSortId() {
         return this.sortId;
     }
     
-    public void setSortId(int sortId) {
+    public void setSortId(Integer sortId) {
         this.sortId = sortId;
     }
     public Tbjuegos getTbjuegos() {

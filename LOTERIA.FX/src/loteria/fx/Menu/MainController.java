@@ -1,5 +1,6 @@
 package loteria.fx.Menu;
 
+import Modelo.Tbusuarios;
 import loteria.fx.LOTERIAFX;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXDrawersStack;
@@ -22,12 +23,13 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import loteria.fx.VentasController;
 
 public class MainController implements Initializable, AbrirFormularioCallback {
 
     @FXML
     private JFXDrawer drawer;
-    
+
     @FXML
     private JFXDrawersStack drawerStack;
 
@@ -38,35 +40,55 @@ public class MainController implements Initializable, AbrirFormularioCallback {
     private AnchorPane root;
 
     StackPane pane;
-    
+
     VBox form;
+
+    private Tbusuarios userActivo;
+
+    public Tbusuarios getUser() {
+        return userActivo;
+    }
+
+    public void setUser(Tbusuarios user) {
+        this.userActivo = user;
+    }
+    SidePanelController controller;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         if (!LOTERIAFX.isSplashLoaded) {
             loadSplashScreen();
         }
-    
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/loteria/fx/Menu/sidepanel.fxml"));
             VBox box = loader.load();
-            SidePanelController controller = loader.getController();
+            controller = loader.getController();
             controller.setCallback(this);
             drawer.setSidePane(box);
-            
+
             FitControlsToWindow();
         } catch (IOException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
         transition.setRate(-1);
-        
+
         hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
             transition.setRate(transition.getRate() * -1);
-            //transition.play();
+            transition.play();
             drawerStack.toggle(drawer);
-        });         
+        });
+    }
+
+    public void IniciarMenu() {
+        try {
+            controller.setUsuarioActivo(userActivo);
+            //controller.IniciarMenu();
+            controller.setCallback(this);
+            FitControlsToWindow();
+        } catch (Exception ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void loadSplashScreen() {
@@ -85,7 +107,6 @@ public class MainController implements Initializable, AbrirFormularioCallback {
             fadeOut.setFromValue(1);
             fadeOut.setToValue(0);
             fadeOut.setCycleCount(1);
-
             fadeIn.play();
 
             fadeIn.setOnFinished((e) -> {
@@ -95,7 +116,7 @@ public class MainController implements Initializable, AbrirFormularioCallback {
             fadeOut.setOnFinished((e) -> {
                 try {
                     AnchorPane parentContent = FXMLLoader.load(getClass().getResource(("/loteria/fx/Menu/main.fxml")));
-                    root.getChildren().setAll(parentContent.getChildren());           
+                    root.getChildren().setAll(parentContent.getChildren());
                 } catch (IOException ex) {
                     Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -105,34 +126,42 @@ public class MainController implements Initializable, AbrirFormularioCallback {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    VentasController VentCont = null;
 
     @Override
-    public void abrirFormulario(String nombreFormulario) {
+    public void abrirFormulario(String nombreFormulario, Tbusuarios user) {
+
         try {
-            form = FXMLLoader.load(getClass().getResource(("/loteria/fx/"+nombreFormulario+".fxml")));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(("/loteria/fx/" + nombreFormulario + ".fxml")));
+            form = (VBox) loader.load();
+            if (nombreFormulario.equals("Ventas")) {
+                VentCont = loader.getController();
+                VentCont.setUser(user);
+                VentCont.NewTicket();
+            }
             drawerStack.setContent(form);
         } catch (IOException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-        }        
+        }
     }
-    
+
     private void FitControlsToWindow() {
         Stage stage = LOTERIAFX.getStage();
-   
+
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
             ResizeControls(stage, false);
-            //System.out.println("Height: " + stage.getHeight() + " Width: " + stage.getWidth());
+            System.out.println("Height: " + stage.getHeight() + " Width: " + stage.getWidth());
         };
-        
+
         stage.widthProperty().removeListener(stageSizeListener);
         stage.heightProperty().removeListener(stageSizeListener);
-        
+
         stage.widthProperty().addListener(stageSizeListener);
-        stage.heightProperty().addListener(stageSizeListener); 
-        
+        stage.heightProperty().addListener(stageSizeListener);
+
         ResizeControls(stage, true);
     }
-    
+
     private void ResizeControls(Stage stage, Boolean firstTime) {
         Integer left = firstTime ? 65 : 35;
         root.setPrefHeight(stage.getHeight());
@@ -141,7 +170,7 @@ public class MainController implements Initializable, AbrirFormularioCallback {
         drawer.setPrefHeight(stage.getHeight() - 34);
 
         if (pane != null) {
-            pane.setPrefWidth(stage.getWidth());  
+            pane.setPrefWidth(stage.getWidth());
             pane.setPrefHeight(stage.getHeight());
         }
 

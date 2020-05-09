@@ -9,7 +9,7 @@
 <!--<AnchorPane id="AnchorPane" fx:id="root" prefHeight="555.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pos.fx.Menu.MainController">-->
 <!--</AnchorPane>-->
 
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="555.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loteria.fx.Menu.MainController">
+<AnchorPane id="AnchorPane" fx:id="root" minHeight="555.0" prefHeight="556.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loteria.fx.Menu.MainController">
     <children>
         <JFXDrawersStack fx:id="drawerStack">
             <content>
@@ -19,4 +19,7 @@
         <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" layoutY="-6.0" prefHeight="562.0" prefWidth="108.0" resizeContent="true" />
         <JFXHamburger fx:id="hamburger" layoutX="831.0" layoutY="14.0" />                                       
     </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </AnchorPane>
