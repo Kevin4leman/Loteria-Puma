@@ -1,5 +1,5 @@
 package Modelo;
-// Generated 07-may-2020 20:54:24 by Hibernate Tools 4.3.1
+// Generated 01-jun-2020 14:41:13 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -17,18 +17,20 @@ public class Tbjuegos  implements java.io.Serializable {
      private Integer jgoMinNumero;
      private Integer jgoMaxNumero;
      private Integer jgoApuestaMin;
+     private byte[] jgoImagen;
      private Set tbjugadas = new HashSet(0);
      private Set tbsorteoses = new HashSet(0);
 
     public Tbjuegos() {
     }
 
-    public Tbjuegos(String jgoDescripcion, Integer jgoCantNumeros, Integer jgoMinNumero, Integer jgoMaxNumero, Integer jgoApuestaMin, Set tbjugadas, Set tbsorteoses) {
+    public Tbjuegos(String jgoDescripcion, Integer jgoCantNumeros, Integer jgoMinNumero, Integer jgoMaxNumero, Integer jgoApuestaMin, byte[] jgoImagen, Set tbjugadas, Set tbsorteoses) {
        this.jgoDescripcion = jgoDescripcion;
        this.jgoCantNumeros = jgoCantNumeros;
        this.jgoMinNumero = jgoMinNumero;
        this.jgoMaxNumero = jgoMaxNumero;
        this.jgoApuestaMin = jgoApuestaMin;
+       this.jgoImagen = jgoImagen;
        this.tbjugadas = tbjugadas;
        this.tbsorteoses = tbsorteoses;
     }
@@ -74,6 +76,13 @@ public class Tbjuegos  implements java.io.Serializable {
     
     public void setJgoApuestaMin(Integer jgoApuestaMin) {
         this.jgoApuestaMin = jgoApuestaMin;
+    }
+    public byte[] getJgoImagen() {
+        return this.jgoImagen;
+    }
+    
+    public void setJgoImagen(byte[] jgoImagen) {
+        this.jgoImagen = jgoImagen;
     }
     public Set getTbjugadas() {
         return this.tbjugadas;

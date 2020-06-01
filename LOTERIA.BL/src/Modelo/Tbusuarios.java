@@ -1,5 +1,5 @@
 package Modelo;
-// Generated 07-may-2020 20:54:24 by Hibernate Tools 4.3.1
+// Generated 01-jun-2020 14:41:13 by Hibernate Tools 4.3.1
 
 
 
@@ -9,7 +9,7 @@ package Modelo;
 public class Tbusuarios  implements java.io.Serializable {
 
 
-     private int userId;
+     private Integer userId;
      private Tbsucursales tbsucursales;
      private String userName;
      private String userPassword;
@@ -17,27 +17,25 @@ public class Tbusuarios  implements java.io.Serializable {
 
     public Tbusuarios() {
     }
-    
+
 	
-    public Tbusuarios(int userId, String userName, String userPassword, String userRole) {
-        this.userId = userId;
+    public Tbusuarios(String userName, String userPassword, String userRole) {
         this.userName = userName;
         this.userPassword = userPassword;
         this.userRole = userRole;
     }
-    public Tbusuarios(int userId, Tbsucursales tbsucursales, String userName, String userPassword, String userRole) {
-       this.userId = userId;
+    public Tbusuarios(Tbsucursales tbsucursales, String userName, String userPassword, String userRole) {
        this.tbsucursales = tbsucursales;
        this.userName = userName;
        this.userPassword = userPassword;
        this.userRole = userRole;
     }
    
-    public int getUserId() {
+    public Integer getUserId() {
         return this.userId;
     }
     
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
     public Tbsucursales getTbsucursales() {

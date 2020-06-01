@@ -1,5 +1,5 @@
 package Modelo;
-// Generated 07-may-2020 20:54:24 by Hibernate Tools 4.3.1
+// Generated 01-jun-2020 14:41:13 by Hibernate Tools 4.3.1
 
 
 
@@ -9,24 +9,23 @@ package Modelo;
 public class Tbsorteosresultados  implements java.io.Serializable {
 
 
-     private int sresId;
+     private Integer sresId;
      private Tbsorteos tbsorteos;
      private int sresNumero;
 
     public Tbsorteosresultados() {
     }
 
-    public Tbsorteosresultados(int sresId, Tbsorteos tbsorteos, int sresNumero) {
-       this.sresId = sresId;
+    public Tbsorteosresultados(Tbsorteos tbsorteos, int sresNumero) {
        this.tbsorteos = tbsorteos;
        this.sresNumero = sresNumero;
     }
    
-    public int getSresId() {
+    public Integer getSresId() {
         return this.sresId;
     }
     
-    public void setSresId(int sresId) {
+    public void setSresId(Integer sresId) {
         this.sresId = sresId;
     }
     public Tbsorteos getTbsorteos() {
