@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="350" pageHeight="500" columnWidth="310" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bb3b41f2-40d2-4a4c-8842-4e04c2819e1f">
+	<property name="ireport.zoom" value="1.6105100000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="HeaderId" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[15]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select th.tkhe_Id ,th.tkhe_SerialNumber, suc.nombreSucursal, suc.codigo as suc_Id, jgo.jgo_Descripcion ,th.sort_Id, jg.jda_Apuesta, jg.jda_id,th.sort_Id, th.tkhe_FechaVenta ,GROUP_CONCAT(jd.jdet_Numero SEPARATOR ' ') as Numeros from 
+  tbticketheader th inner join tbjugada jg on jg.tkhe_Id = th.tkhe_Id
+  inner join tbjugadadetalle jd on jd.jda_id = jg.jda_id
+  inner join tbjuegos jgo on jgo.jgo_Id = jg.jgo_Id
+  inner join tbsucursales suc on suc.codigo = th.suc_Id
+  where th.tkhe_Id = $P{HeaderId}
+  group by jg.jda_id
+order by jgo.jgo_Id;]]>
+	</queryString>
+	<field name="tkhe_Id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tkhe_SerialNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombreSucursal" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="suc_Id" class="java.lang.Integer"/>
+	<field name="jgo_Descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sort_Id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jda_Apuesta" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jda_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tkhe_FechaVenta" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Numeros" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="0" width="162" height="32" uuid="4761a23a-8336-4b58-a400-cb6e50aac03b"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TICKET DE LOTEIA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="61" splitType="Stretch">
+			<textField>
+				<reportElement x="158" y="20" width="49" height="20" uuid="bcbecbe8-4287-40c7-87fd-37d470299c6b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{suc_Id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="0" width="162" height="32" uuid="e10c47be-9173-44a5-b50d-b301062cf19f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreSucursal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="95" y="20" width="63" height="20" uuid="9d84da67-b4c9-44e7-afc0-6f08c1a22113"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Id vendedor]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="107" y="40" width="100" height="20" uuid="8fb8a04f-ec50-4a5d-850e-12967c92ba40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tkhe_FechaVenta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement x="107" y="7" width="100" height="20" uuid="26dee25a-5f98-4c36-b31e-5f285dcc4e38"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Numeros]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="207" y="7" width="100" height="20" uuid="7761d0b9-5dcd-4a70-b037-ef1b370b8f9a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apuesta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="7" width="100" height="20" uuid="438e6e2f-27b0-4b6b-9637-9a813682cf3d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Juego]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="107" y="0" width="100" height="23" uuid="ba6638c5-ff46-4ee8-8824-329876ff66f9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Numeros}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="207" y="0" width="100" height="23" uuid="e04837a9-4ff3-4da2-bb4d-44cc4e2e7635"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jda_Apuesta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="7" y="0" width="100" height="23" uuid="13fdb936-50af-459f-a8c6-e82147dfac4b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jgo_Descripcion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="86" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

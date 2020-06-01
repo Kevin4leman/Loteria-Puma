@@ -13,6 +13,7 @@ import Modelo.Tbsucursales;
 import Modelo.Tbticketheader;
 import Modelo.Tbusuarios;
 import com.jfoenix.controls.JFXTextField;
+import java.io.InputStream;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -20,7 +21,9 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
@@ -43,6 +46,12 @@ import javafx.scene.text.Font;
 import javax.naming.Binding;
 import loteria.bl.TableActions;
 import loteria.bl.VentasServices;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.swing.JRViewer;
 
 /**
  * FXML Controller class
@@ -250,7 +259,7 @@ public class VentasController implements Initializable {
     }
     
     @FXML
-    private void ProcesarTicket()
+    private void ProcesarTicket() throws JRException
     {
         if(JugadasTicket.size() > 0)
         {
@@ -267,6 +276,8 @@ public class VentasController implements Initializable {
                     TActions.TbJugadaDetalleInsert(jgdet);
                 }
             }
+            TicketReportView ReportView = new TicketReportView();
+            ReportView.ShowReport(TicketH);
             TableData.clear();
             TicketTable.refresh();
             NewTicket();
@@ -297,6 +308,7 @@ public class VentasController implements Initializable {
         }
         ClearAllNumbers();
     }
+  
     
     @FXML
     private void HandleButton1()
@@ -397,7 +409,7 @@ public class VentasController implements Initializable {
                 ((TextField)NumberField).setText(((TextField)NumberField).getText() + Integer.toString(Num));
                 return;
             }
-            else if(((TextField)NumberField).getText().length() == 0 && Num == 0)
+            else if(((TextField)NumberField).getText().length() == 0 && Num == 0 && Integer.parseInt(((TextField)NumberField).getText() + Num) <= CurrentGame.getJgoMaxNumero() && Integer.parseInt(((TextField)NumberField).getText() + Num) >= CurrentGame.getJgoMinNumero())
             {
                 ((TextField)NumberField).setText(((TextField)NumberField).getText() + Integer.toString(Num));
                 return;

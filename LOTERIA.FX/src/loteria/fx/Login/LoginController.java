@@ -23,6 +23,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
@@ -80,13 +81,25 @@ public class LoginController implements Initializable {
     @FXML
     public void IniciarSesion() throws IOException {
         Tbusuarios userLog = null;
+        Alert a = new Alert(Alert.AlertType.NONE);
         try {
             userLog = logService.Verifyuser(Usernametxt.getText(), Passwordtxt.getText());
             if (userLog != null) {
                 user = userLog;
                 CurrentStage.hide();
             }
+            else
+            {
+                a.setAlertType(Alert.AlertType.INFORMATION);
+                a.setHeaderText("Error de inicio de sesion");
+                a.setContentText("Usuario o contraña invalidos!");
+                a.show();
+            }
         } catch (Exception ex) {
+            a.setAlertType(Alert.AlertType.INFORMATION);
+            a.setHeaderText("Error de inicio de sesion");
+                a.setContentText("Usuario o contraña invalidos!");
+                a.show();
             System.out.println(ex);
         }
     }
