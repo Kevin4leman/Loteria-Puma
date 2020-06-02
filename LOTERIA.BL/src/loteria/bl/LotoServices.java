@@ -110,9 +110,7 @@ public class LotoServices {
     }
     
     private String validarSucursales(Tbsucursales Sucursal) {
-        if (Sucursal.getCodigo() < 0 ) {
-            return "Ingrese Codigo";
-        }
+        
         if (Sucursal.getRtn()< 0) {
             return "ingrese RTN";
         }

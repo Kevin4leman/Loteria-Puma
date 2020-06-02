@@ -27,20 +27,31 @@ public class SidePanelController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        listView.getItems().add(new Label("Sucursales"));
-        listView.getItems().add(new Label("Ventas"));
-        //if(this.UsuarioActivo.getUserRole().equals("admin"))
-        //{
-            listView.getItems().add(new Label("Juegos"));
-        //}
-//        listView.getItems().add(new Label("Reportes"));   
-        listView.getItems().add(new Label("Salir"));
+        
+        
+    }
 
+    public void StartMenu()
+    {
+        
+        if(this.UsuarioActivo.getUserRole().equals("Admin"))
+        {
+            listView.getItems().add(new Label("Juegos"));
+            listView.getItems().add(new Label("Sucursales"));
+            listView.getItems().add(new Label("Usuarios"));  
+        }
+        else
+        {
+            listView.getItems().add(new Label("Ventas"));
+        }
+         listView.getItems().add(new Label("FormTablero"));
+        listView.getItems().add(new Label("Salir"));
+        //FormTablero
         listView.setOnMouseClicked(event -> {
             AbrirForm();
         });
     }
-
+    
     private void AbrirForm()
     {
         Label label = (Label)listView.getSelectionModel().getSelectedItem();

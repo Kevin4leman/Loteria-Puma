@@ -108,7 +108,7 @@ public class FormSucursalController implements Initializable {
         
         definirColumnaEditar();
         definirColumnaEliminar();
-        definirColumnaImagen();
+        //definirColumnaImagen();
        
        cargarDatos();
     }    
@@ -214,7 +214,7 @@ public class FormSucursalController implements Initializable {
         });        
     }
 
-    private void definirColumnaImagen() {
+    /*private void definirColumnaImagen() {
     colImagen.setCellFactory(param -> new TableCell<String, String>() {
             final ImageView img = new ImageView();
 
@@ -235,7 +235,8 @@ public class FormSucursalController implements Initializable {
                 }
             }            
         });         
-    }
+    }*/
+
     
     
 }

@@ -136,7 +136,11 @@ public class Tbsucursales  implements java.io.Serializable {
         return imageView;
     }    
 
-
+    @Override
+    public String toString()
+    {
+        return this.nombreSucursal;
+    }
 }
 
 

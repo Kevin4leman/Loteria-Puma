@@ -79,8 +79,8 @@ public class MainController implements Initializable, AbrirFormularioCallback {
     public void IniciarMenu() {
         try {
             controller.setUsuarioActivo(userActivo);
-            //controller.IniciarMenu();
             controller.setCallback(this);
+            controller.StartMenu();
             FitControlsToWindow();
         } catch (Exception ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);

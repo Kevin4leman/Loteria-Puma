@@ -6,12 +6,18 @@
 package loteria.fx;
 
 import Modelo.Tbjuegos;
+import Modelo.Tbusuarios;
 import javafx.scene.control.TextField;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableCell;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import loteria.bl.TableActions;
@@ -64,7 +70,43 @@ public class IngresarJuegosController implements Initializable {
             juego.setImageView(image);
         }
     }
+    /*
+    private void definirColumnaEliminar() {
+        colEliminar.setCellFactory(param -> new TableCell<String, String>() {
+            final Button btn = new Button("Eliminar");
+            
+            @Override
+            public void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                    setText(null);
+                } else {
+                    
+                    btn.setOnAction(event -> {
+                        TablaUsers.getSelectionModel().select(getTableRow().getItem());
+                        Tbusuarios user = (Tbusuarios) getTableRow().getItem();
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Eliminar " + user.getUserName() + " ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+                        alert.showAndWait();
+                        if (alert.getResult() == ButtonType.YES)
+                        {
+                        ta.eliminarUsuario(user);
+                        cargarDatos();
+                        }
+                    });
+                    setGraphic(btn);
+                    setText(null);
+                }
+            }            
+        });        
+    }
     
+     private void cargarDatos() {
+       dataUsuarios = FXCollections.observableArrayList(ta.ObtenerUsuarios());     
+       TablaUsers.setItems(dataUsuarios);
+       TablaUsers.refresh();
+    }
+    */
     public void GuardarJuego(){
         juego.setJgoDescripcion(txtNombre.getText());
         juego.setJgoCantNumeros(Integer.parseInt(txtNumeros.getText()));

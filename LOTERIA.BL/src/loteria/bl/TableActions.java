@@ -11,7 +11,11 @@ import Modelo.Tbjugadadetalle;
 import Modelo.Tbsorteos;
 import Modelo.Tbsucursales;
 import Modelo.Tbticketheader;
+import Modelo.Tbusuarios;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -143,5 +147,68 @@ public class TableActions {
          session.close();
         }
         return ReturnVal;
+    }
+    
+    public int TbUsuariossInsert(Tbusuarios User)
+    {
+        int ReturnVal = -1;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        
+        try
+        {
+            session.save(User);
+            tx.commit();
+            ReturnVal = ((BigInteger)session.createSQLQuery("SELECT LAST_INSERT_ID()").uniqueResult()).intValue();
+        }
+        catch(Exception ex)
+        {
+            tx.rollback();
+            System.out.println(ex.getMessage());
+        }
+        finally
+        {
+         session.close();
+        }
+        return ReturnVal;
+    }
+    
+    public void eliminarUsuario(Tbusuarios User) {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            Transaction tx = session.beginTransaction();
+            
+            try
+            {
+                session.delete(User);
+                tx.commit();
+            }
+            catch (Exception ex)
+            {
+                tx.rollback();
+                System.out.println(ex.getMessage());
+            }
+            finally
+            {
+                session.close();
+            }
+    }
+    
+    public ArrayList<Tbusuarios> ObtenerUsuarios()
+    {
+    Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        Transaction tx = session.beginTransaction();
+        
+        Criteria query = session.createCriteria(Tbusuarios.class);
+        List<Tbusuarios> resultado = query.list();
+        for(Tbusuarios usr: resultado)
+        {
+            if(usr.getTbsucursales() != null)
+            usr.setSucursalNombre(usr.getTbsucursales().getNombreSucursal());
+        }
+        tx.commit();
+        session.close();
+        
+        return new ArrayList<>(resultado);
     }
 }

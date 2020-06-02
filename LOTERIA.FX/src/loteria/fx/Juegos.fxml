@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="5.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loteria.fx.IngresarJuegosController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="782.0" spacing="5.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loteria.fx.IngresarJuegosController">
    <children>
       <HBox prefHeight="130.0" prefWidth="600.0">
          <children>
@@ -55,7 +55,6 @@
                <children>
                   <Button mnemonicParsing="false" onAction="#agregarImagen" text="Agregar imagen" />
                   <Button mnemonicParsing="false" onAction="#GuardarJuego" text="Guardar juego" />
-                  <Button mnemonicParsing="false" text="Eliminar juego" />
                </children>
             </VBox>
          </children>
@@ -64,12 +63,12 @@
          <children>
             <TableView prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <columns>
-                  <TableColumn prefWidth="130.0" text="Imagen" />
                   <TableColumn prefWidth="116.0" text="Nombre" />
                   <TableColumn prefWidth="70.0" text="Numeros" />
                   <TableColumn prefWidth="93.0" text="Num. Minimo" />
                   <TableColumn prefWidth="97.0" text="Num. Maximo" />
                   <TableColumn prefWidth="93.0" text="Apuesta min." />
+                  <TableColumn prefWidth="75.0" text="Eliminar" />
                </columns>
             </TableView>
          </children>

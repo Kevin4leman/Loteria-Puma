@@ -14,6 +14,8 @@ public class Tbusuarios  implements java.io.Serializable {
      private String userName;
      private String userPassword;
      private String userRole;
+     
+     private String SucursalNombre;
 
     public Tbusuarios() {
     }
@@ -67,9 +69,15 @@ public class Tbusuarios  implements java.io.Serializable {
         this.userRole = userRole;
     }
 
+    public String getSucursalNombre() {
+        return SucursalNombre;
+    }
 
+    public void setSucursalNombre(String SucursalNombre) {
+        this.SucursalNombre = SucursalNombre;
+    }
 
-
+    
 }
 
 

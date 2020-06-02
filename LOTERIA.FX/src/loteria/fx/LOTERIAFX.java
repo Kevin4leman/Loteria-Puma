@@ -6,6 +6,9 @@
 package loteria.fx;
 
 import Modelo.Tbusuarios;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,14 +34,6 @@ public class LOTERIAFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         LOTERIAFX.stage = stage;
-
-        FXMLLoader MenuLoader = new FXMLLoader(getClass().getResource("/loteria/fx/Menu/main.fxml"));
-        Parent root = MenuLoader.load();
-        MainController MenuController = MenuLoader.getController();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle("Loterias");
-
         Stage LoginStage = new Stage();
         FXMLLoader loaderLogin = new FXMLLoader(getClass().getResource("/loteria/fx/Login/profile.fxml"));
         Parent LoginRoot = (Parent) loaderLogin.load();
@@ -53,10 +48,21 @@ public class LOTERIAFX extends Application {
         LoginStage.setOnHiding(event -> {
             UsuarioActivo = LogCon.getUser();
             if (LogCon.getUser() != null) {
-                stage.show();
-                MenuController.setUser(LogCon.getUser());
-                MenuController.IniciarMenu();
-                System.out.println(MenuController.getUser().getUserName() + "");
+                try {
+                    FXMLLoader MenuLoader = new FXMLLoader(getClass().getResource("/loteria/fx/Menu/main.fxml"));
+                    Parent root = MenuLoader.load();
+                    MainController MenuController = MenuLoader.getController();
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.setTitle("Loterias");
+                    MenuController.setUser(LogCon.getUser());
+                    MenuController.IniciarMenu();
+                    stage.show();
+                    
+                    System.out.println(MenuController.getUser().getUserName() + "");
+                } catch (IOException ex) {
+                    Logger.getLogger(LOTERIAFX.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
