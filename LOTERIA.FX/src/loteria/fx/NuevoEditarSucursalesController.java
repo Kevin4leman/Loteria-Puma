@@ -89,6 +89,7 @@ public class NuevoEditarSucursalesController implements Initializable {
     public void setSucursal(Tbsucursales Sucursal) {
         this.Sucursal = Sucursal;
     }
+    
     public void agregarImagen() {
         FileChooser fc = new FileChooser();
         FileChooser.ExtensionFilter extensiones = 

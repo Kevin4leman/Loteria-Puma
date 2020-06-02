@@ -40,6 +40,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
@@ -168,13 +169,25 @@ public class VentasController implements Initializable {
     private void FillGamesBar()
     {
         ArrayList<Tbjuegos> Juegos = Servicio.ObtenerJuegos();
-        
+        ImageView icono;
         for(Tbjuegos juego: Juegos)
         {
             Button GameBtn = new Button();
             
             GameBtn.setMinSize(75, 60);
-            GameBtn.setText(juego.getJgoDescripcion());
+            try
+            {
+                icono = new ImageView(juego.getImageView());
+                icono.setFitHeight(60);
+                icono.setFitWidth(75);
+                GameBtn.setGraphic(icono);
+                
+            }
+            catch(Exception ex)
+            {
+                GameBtn.setText(juego.getJgoDescripcion());
+            }
+            
             GameBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent event) -> {
                 UpdateCurrentbet(0);
                 Object object = event.getSource();

@@ -121,5 +121,27 @@ public class TableActions {
         return ReturnVal;
     }
     
-    
+    public int TbJuegosInsert(Tbjuegos jgo)
+    {
+        int ReturnVal = -1;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        
+        try
+        {
+            session.save(jgo);
+            tx.commit();
+            ReturnVal = ((BigInteger)session.createSQLQuery("SELECT LAST_INSERT_ID()").uniqueResult()).intValue();
+        }
+        catch(Exception ex)
+        {
+            tx.rollback();
+            System.out.println(ex.getMessage());
+        }
+        finally
+        {
+         session.close();
+        }
+        return ReturnVal;
+    }
 }

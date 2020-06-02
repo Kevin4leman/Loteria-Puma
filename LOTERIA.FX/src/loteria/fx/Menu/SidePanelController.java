@@ -29,7 +29,10 @@ public class SidePanelController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         listView.getItems().add(new Label("Sucursales"));
         listView.getItems().add(new Label("Ventas"));
-//        listView.getItems().add(new Label("Facturas"));
+        //if(this.UsuarioActivo.getUserRole().equals("admin"))
+        //{
+            listView.getItems().add(new Label("Juegos"));
+        //}
 //        listView.getItems().add(new Label("Reportes"));   
         listView.getItems().add(new Label("Salir"));
 
