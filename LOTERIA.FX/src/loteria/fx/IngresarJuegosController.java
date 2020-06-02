@@ -10,17 +10,29 @@ import Modelo.Tbusuarios;
 import javafx.scene.control.TextField;
 import java.io.File;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
+import javafx.util.Callback;
+import loteria.bl.HibernateUtil;
 import loteria.bl.TableActions;
+import org.hibernate.Session;
+import org.hibernate.jdbc.ReturningWork;
 
 /**
  * FXML Controller class
@@ -47,11 +59,17 @@ public class IngresarJuegosController implements Initializable {
     @FXML
     private TextField txtApuestaMinima;
     
+    @FXML
+    private TableView tableview;
+    
+    private ObservableList<ObservableList> TableViewdata;
+    
     private Tbjuegos juego;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         juego = new Tbjuegos();
+        TableViewBuildData();
     }    
     
     @FXML
@@ -70,43 +88,64 @@ public class IngresarJuegosController implements Initializable {
             juego.setImageView(image);
         }
     }
-    /*
-    private void definirColumnaEliminar() {
-        colEliminar.setCellFactory(param -> new TableCell<String, String>() {
-            final Button btn = new Button("Eliminar");
-            
-            @Override
-            public void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) {
-                    setGraphic(null);
-                    setText(null);
-                } else {
-                    
-                    btn.setOnAction(event -> {
-                        TablaUsers.getSelectionModel().select(getTableRow().getItem());
-                        Tbusuarios user = (Tbusuarios) getTableRow().getItem();
-                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Eliminar " + user.getUserName() + " ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
-                        alert.showAndWait();
-                        if (alert.getResult() == ButtonType.YES)
-                        {
-                        ta.eliminarUsuario(user);
-                        cargarDatos();
-                        }
-                    });
-                    setGraphic(btn);
-                    setText(null);
-                }
-            }            
-        });        
-    }
     
-     private void cargarDatos() {
-       dataUsuarios = FXCollections.observableArrayList(ta.ObtenerUsuarios());     
-       TablaUsers.setItems(dataUsuarios);
-       TablaUsers.refresh();
-    }
-    */
+    public void TableViewBuildData(){
+          
+          TableViewdata = FXCollections.observableArrayList();
+          try{
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            //SQL FOR SELECTING ALL OF CUSTOMER
+            String SQL = "select jgo.jgo_Id as `Id`, jgo.jgo_Descripcion as `Nombre`, jgo.jgo_CantNumeros as `Numeros`, jgo.jgo_MinNumero as `Numero minimo`, jgo.jgo_MaxNumero as `Numero maximo` , jgo.jgo_ApuestaMin as `Apuesta minima`\n" +
+                            "  FROM tbjuegos jgo";
+            //ResultSet
+            ResultSet rs;
+            rs = session.doReturningWork(new ReturningWork<ResultSet>() {
+                @Override
+                public ResultSet execute(Connection cnctn) throws SQLException {
+                   return cnctn.createStatement().executeQuery(SQL);
+                }
+            });
+            
+            session.close();
+            //rs = c.createStatement().executeQuery(SQL);
+
+            ///Table columns declaration
+            for(int i=0 ; i<rs.getMetaData().getColumnCount(); i++){
+                //We are using non property style for making dynamic table
+                final int j = i;                
+                TableColumn col = new TableColumn(rs.getMetaData().getColumnLabel(i+1));
+                col.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList,String>,ObservableValue<String>>(){                    
+                    public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {                                                                                              
+                        return new SimpleStringProperty(param.getValue().get(j).toString());                        
+                    }                    
+                });
+
+                tableview.getColumns().addAll(col); 
+                System.out.println("Column ["+i+"] ");
+            }
+
+            //Data to list
+            while(rs.next()){
+                //Iterate Row
+                ObservableList<String> row = FXCollections.observableArrayList();
+                for(int i=1 ; i<=rs.getMetaData().getColumnCount(); i++){
+                    //Iterate Column
+                    row.add(rs.getString(i));
+                }
+                System.out.println("Row [1] added "+row );
+                TableViewdata.add(row);
+
+            }
+
+            //FINALLY ADDED TO TableView
+            tableview.setItems(TableViewdata);
+            tableview.refresh();
+          }catch(Exception e){
+              e.printStackTrace();
+              System.out.println("Error on Building Data");             
+          }
+      }
+    
     public void GuardarJuego(){
         juego.setJgoDescripcion(txtNombre.getText());
         juego.setJgoCantNumeros(Integer.parseInt(txtNumeros.getText()));
@@ -114,10 +153,19 @@ public class IngresarJuegosController implements Initializable {
         juego.setJgoMaxNumero(Integer.parseInt(txtMaxNumero.getText()));
         juego.setJgoApuestaMin(Integer.parseInt(txtApuestaMinima.getText()));
         
+        
+        txtNombre.clear();
+        txtNumeros.clear();
+        txtApuestaMinima.clear();
+        txtMaxNumero.clear();
+        txtApuestaMinima.clear();
+                
         TableActions ta = new TableActions();
         
         ta.TbJuegosInsert(juego);
         juego = new Tbjuegos();
+        tableview.getColumns().clear();
+        TableViewBuildData();
     }
     
 }

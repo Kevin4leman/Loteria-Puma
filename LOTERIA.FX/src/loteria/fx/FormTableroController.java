@@ -17,6 +17,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
@@ -34,26 +36,96 @@ import org.hibernate.jdbc.Work;
  */
 public class FormTableroController implements Initializable {
 
-      @FXML
-    private VBox pieChartVentas;
+    @FXML
+    private PieChart pieChartVentas;
 
     @FXML
-    private BarChart<?, ?> barChartVentas;
+    private BarChart barChartVentas;
     
     
     @FXML
     private TableView tableview;
     
-    private ObservableList<ObservableList> data;
+    private ObservableList<ObservableList> TableViewdata;
+    
+    private ObservableList <PieChart.Data> PieChartData;
+    
+    private XYChart.Series<String, Double> BarChartData;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        buildData();
+        TableViewBuildData();
+        PieVhartBuildData();
+        BarChartBuildData();
     }    
     
-    public void buildData(){
+    public void BarChartBuildData()
+    {
+        BarChartData = new XYChart.Series<>();
+          try{
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            //SQL FOR SELECTING ALL OF CUSTOMER
+            String SQL = "select Count(th.tkhe_Id) as `Tickets vendidos`, DATE_FORMAT(th.tkhe_FechaVenta, \"%W %d\") as `Fecha` \n" +
+                            "  from tbticketheader th\n" +
+                            "  GROUP BY DATE(th.tkhe_FechaVenta)\n" +
+                            "LIMIT 7;";
+            //ResultSet
+            ResultSet rs;
+            rs = session.doReturningWork(new ReturningWork<ResultSet>() {
+                @Override
+                public ResultSet execute(Connection cnctn) throws SQLException {
+                    cnctn.createStatement().executeQuery(" SET lc_time_names = 'es_MX'");
+                   return cnctn.createStatement().executeQuery(SQL);
+                }
+            });
+            session.close();
+            
+            while (rs.next()) {
+                String name = rs.getString("Fecha");
+                Double no = rs.getDouble("Tickets vendidos");
+                BarChartData = new XYChart.Series<>();
+                BarChartData.getData().add(new XYChart.Data<>(name, no));
+                barChartVentas.getData().addAll(BarChartData);
+            }
+          }catch(Exception e){
+              System.out.println("Error on DB connection");
+              return;
+          }
+    }
+    
+    public void PieVhartBuildData(){
+          PieChartData = FXCollections.observableArrayList();
+          try{
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            //SQL FOR SELECTING ALL OF CUSTOMER
+            String SQL = "SELECT COUNT(jda.jda_id) as `Jugadas vendidas`, CONCAT(jgo.jgo_Descripcion, \" - \" ,COUNT(jda.jda_id)) as `Juego`\n" +
+                            "  FROM tbjugada jda inner join tbjuegos jgo on jda.jgo_Id = jgo.jgo_Id\n" +
+                            "  group by jgo.jgo_Id;";
+            //ResultSet
+            ResultSet rs;
+            rs = session.doReturningWork(new ReturningWork<ResultSet>() {
+                @Override
+                public ResultSet execute(Connection cnctn) throws SQLException {
+                   return cnctn.createStatement().executeQuery(SQL);
+                }
+            });
+            session.close();
+            while(rs.next()){
+                //adding data on piechart data
+                PieChartData.add(new PieChart.Data(rs.getString("Juego"), rs.getDouble("Jugadas vendidas")));
+            }
+            pieChartVentas.getData().addAll(PieChartData);
+            
+          }catch(Exception e){
+              System.out.println("Error on DB connection");
+              return;
+          }
+ 
+      }
+    
+    public void TableViewBuildData(){
           
-          data = FXCollections.observableArrayList();
+          TableViewdata = FXCollections.observableArrayList();
           try{
             Session session = HibernateUtil.getSessionFactory().openSession();
             //SQL FOR SELECTING ALL OF CUSTOMER
@@ -71,11 +143,11 @@ public class FormTableroController implements Initializable {
                    return cnctn.createStatement().executeQuery(SQL);
                 }
             });
+            
+            session.close();
             //rs = c.createStatement().executeQuery(SQL);
 
-            /**********************************
-             * TABLE COLUMN ADDED DYNAMICALLY *
-             **********************************/
+            ///Table columns declaration
             for(int i=0 ; i<rs.getMetaData().getColumnCount(); i++){
                 //We are using non property style for making dynamic table
                 final int j = i;                
@@ -90,9 +162,7 @@ public class FormTableroController implements Initializable {
                 System.out.println("Column ["+i+"] ");
             }
 
-            /********************************
-             * Data added to ObservableList *
-             ********************************/
+            //Data to list
             while(rs.next()){
                 //Iterate Row
                 ObservableList<String> row = FXCollections.observableArrayList();
@@ -101,12 +171,12 @@ public class FormTableroController implements Initializable {
                     row.add(rs.getString(i));
                 }
                 System.out.println("Row [1] added "+row );
-                data.add(row);
+                TableViewdata.add(row);
 
             }
 
             //FINALLY ADDED TO TableView
-            tableview.setItems(data);
+            tableview.setItems(TableViewdata);
             tableview.refresh();
           }catch(Exception e){
               e.printStackTrace();
