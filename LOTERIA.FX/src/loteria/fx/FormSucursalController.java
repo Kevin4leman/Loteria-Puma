@@ -149,7 +149,7 @@ public class FormSucursalController implements Initializable {
         
         NuevoEditarSucursalesController controller = loader.getController();
         controller.setController(this);
-        controller.setSucursal(Sucursal);
+        controller.setSucursal();
         
         Stage stage = new Stage();
         Scene scene = new Scene(root);

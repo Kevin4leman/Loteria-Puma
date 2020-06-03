@@ -57,10 +57,16 @@ public class NuevoEditarSucursalesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        Sucursal = new Tbsucursales();
+        //Sucursal.set
     }    
     
     public void aceptar() {
+        Sucursal.setRtn(Integer.parseInt(txtRTN.getText()));
+        Sucursal.setNombreSucursal(txtNombreSuc.getText());
+        Sucursal.setResponsable(txtNombreRepe.getText());
+        Sucursal.setDireccion(txtDireccion.getText());
+        
         String resultado = controller.guardar(Sucursal);
         if (resultado.equals("")) {
             cerrar();   
@@ -71,6 +77,8 @@ public class NuevoEditarSucursalesController implements Initializable {
             alert.setContentText(resultado);
             alert.showAndWait();
         }
+        
+        Sucursal = new Tbsucursales();
     }
     
     public void cancelar() {
@@ -86,8 +94,8 @@ public class NuevoEditarSucursalesController implements Initializable {
         this.controller = controller;
     }
     
-    public void setSucursal(Tbsucursales Sucursal) {
-        this.Sucursal = Sucursal;
+    public void setSucursal() {
+        //imgViewImagen.imageProperty().bind(Sucursal.imageViewProperty());
     }
     
     public void agregarImagen() {
@@ -102,6 +110,7 @@ public class NuevoEditarSucursalesController implements Initializable {
 
         if (archivo != null) {
             Image image = new Image(archivo.toURI().toString());
+            imgViewImagen.setImage(image);
             Sucursal.setImageView(image);
         }
 

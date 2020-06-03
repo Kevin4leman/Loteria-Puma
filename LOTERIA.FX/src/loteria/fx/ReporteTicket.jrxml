@@ -42,6 +42,9 @@ order by jgo.jgo_Id;]]>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="Numeros" class="java.lang.String"/>
+	<variable name="jda_Apuesta_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{jda_Apuesta}]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -52,7 +55,7 @@ order by jgo.jgo_Id;]]>
 				<textElement>
 					<font size="16" isBold="true"/>
 				</textElement>
-				<text><![CDATA[TICKET DE LOTEIA]]></text>
+				<text><![CDATA[TICKET DE LOTERIA]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -136,6 +139,18 @@ order by jgo.jgo_Id;]]>
 		<band height="86" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="107" y="22" width="100" height="20" uuid="28a56c8d-3fa6-4bf7-afcf-f6c22d6cbfa5"/>
+				<textFieldExpression><![CDATA[$V{jda_Apuesta_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="107" y="2" width="100" height="20" uuid="abad0fb0-deed-4feb-8c1c-98feb1fa8001"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total a pagar]]></text>
+			</staticText>
+		</band>
 	</summary>
 </jasperReport>

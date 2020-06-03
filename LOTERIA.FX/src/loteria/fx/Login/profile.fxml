@@ -97,12 +97,12 @@
             </AnchorPane>
             <AnchorPane layoutX="19.0" layoutY="222.0" prefHeight="50.0" prefWidth="270.0" style="-fx-border-color: #8c90b3; -fx-border-radius: 2;">
                <children>
-                  <TextField fx:id="Usernametxt" layoutX="61.0" layoutY="13.0" style="-fx-background-color: #2c344b; -fx-text-fill: #8c90b3;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                  <TextField fx:id="Usernametxt" layoutX="61.0" layoutY="13.0" promptText="Usuario" style="-fx-background-color: #2c344b; -fx-text-fill: #8c90b3;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="20.0" layoutY="298.0" prefHeight="50.0" prefWidth="270.0" style="-fx-border-color: #8c90b3; -fx-border-radius: 2;">
                <children>
-                  <PasswordField fx:id="Passwordtxt" layoutX="11.0" layoutY="16.0" style="-fx-background-color: #2c344b; -fx-text-fill: #8c90b3;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                  <PasswordField fx:id="Passwordtxt" layoutX="11.0" layoutY="16.0" promptText="Contraseña" style="-fx-background-color: #2c344b; -fx-text-fill: #8c90b3;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                </children>
             </AnchorPane>
             <Label layoutX="89.0" layoutY="377.0" textFill="#8c90b3">

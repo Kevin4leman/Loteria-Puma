@@ -38,13 +38,14 @@ public class SidePanelController implements Initializable {
         {
             listView.getItems().add(new Label("Juegos"));
             listView.getItems().add(new Label("Sucursales"));
-            listView.getItems().add(new Label("Usuarios"));  
+            listView.getItems().add(new Label("Usuarios"));
+            listView.getItems().add(new Label("FormTablero"));
         }
         else
         {
             listView.getItems().add(new Label("Ventas"));
         }
-         listView.getItems().add(new Label("FormTablero"));
+        
         listView.getItems().add(new Label("Salir"));
         //FormTablero
         listView.setOnMouseClicked(event -> {

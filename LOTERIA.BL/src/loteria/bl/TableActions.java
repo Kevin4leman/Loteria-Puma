@@ -133,9 +133,18 @@ public class TableActions {
         
         try
         {
+            Tbsorteos sort = new Tbsorteos();
+            
             session.save(jgo);
-            tx.commit();
+            
             ReturnVal = ((BigInteger)session.createSQLQuery("SELECT LAST_INSERT_ID()").uniqueResult()).intValue();
+            
+            jgo.setJgoId(ReturnVal);
+            
+            sort.setTbjuegos(jgo);
+            
+            session.save(sort);
+            tx.commit();
         }
         catch(Exception ex)
         {

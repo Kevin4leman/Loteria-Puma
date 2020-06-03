@@ -129,7 +129,7 @@ public class Tbsucursales  implements java.io.Serializable {
             System.out.println(ex.getMessage());
         }
 
-        imageView.set(image);
+        //imageView.set(image);
     }
 
     public SimpleObjectProperty imageViewProperty() {   
